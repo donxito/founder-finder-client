@@ -1,87 +1,112 @@
- [
-      {
-        "id": "1",
-        "title": "Senior React Developer",
-        "type": "Full-Time",
-        "description": "We are seeking a talented Front-End Developer to join our team in Boston, MA. The ideal candidate will have strong skills in HTML, CSS, and JavaScript, with experience working with modern JavaScript frameworks such as React or Angular.",
-        "location": "Boston, MA",
-        "salary": "$70K - $80K",
-        "company": {
-          "name": "NewTek Solutions",
-          "description": "NewTek Solutions is a leading technology company specializing in web development and digital solutions. We pride ourselves on delivering high-quality products and services to our clients while fostering a collaborative and innovative work environment.",
-          "contactEmail": "contact@teksolutions.com",
-          "contactPhone": "555-555-5555"
-        }
-      },
-      {
-        "id": "2",
-        "title": "Front-End Engineer (React & Redux)",
-        "type": "Full-Time",
-        "location": "Miami, FL",
-        "description": "Join our team as a Front-End Developer in sunny Miami, FL. We are looking for a motivated individual with a passion for crafting beautiful and responsive web applications. Experience with UI/UX design principles and a strong attention to detail are highly desirable.",
-        "salary": "$70K - $80K",
-        "company": {
-          "name": "Veneer Solutions",
-          "description": "Veneer Solutions is a creative agency specializing in digital design and development. Our team is dedicated to pushing the boundaries of creativity and innovation to deliver exceptional results for our clients.",
-          "contactEmail": "contact@loremipsum.com",
-          "contactPhone": "555-555-5555"
-        }
-      },
-      {
-        "id": "3",
-        "title": "React.js Dev",
-        "type": "Full-Time",
-        "location": "Brooklyn, NY",
-        "description": "Are you passionate about front-end development? Join our team in vibrant Brooklyn, NY, and work on exciting projects that make a difference. We offer competitive compensation and a collaborative work environment where your ideas are valued.",
-        "salary": "$70K - $80K",
-        "company": {
-          "name": "Dolor Cloud",
-          "description": "Dolor Cloud is a leading technology company specializing in digital solutions for businesses of all sizes. With a focus on innovation and customer satisfaction, we are committed to delivering cutting-edge products and services.",
-          "contactEmail": "contact@dolorsitamet.com",
-          "contactPhone": "555-555-5555"
-        }
-      },
-      {
-        "id": "4",
-        "title": "React Front-End Developer",
-        "type": "Part-Time",
-        "description": "Join our team as a Part-Time Front-End Developer in beautiful Pheonix, AZ. We are looking for a self-motivated individual with a passion for creating engaging user experiences. This position offers flexible hours and the opportunity to work remotely.",
-        "location": "Pheonix, AZ",
-        "salary": "$60K - $70K",
-        "company": {
-          "name": "Alpha Elite",
-          "description": "Alpha Elite is a dynamic startup specializing in digital marketing and web development. We are committed to fostering a diverse and inclusive workplace where creativity and innovation thrive.",
-          "contactEmail": "contact@adipisicingelit.com",
-          "contactPhone": "555-555-5555"
-        }
-      },
-      {
-        "id": "5",
-        "title": "Full Stack React Developer",
-        "type": "Full-Time",
-        "description": "Exciting opportunity for a Full-Time Front-End Developer in bustling Atlanta, GA. We are seeking a talented individual with a passion for building elegant and scalable web applications. Join our team and make an impact!",
-        "location": "Atlanta, GA",
-        "salary": "$90K - $100K",
-        "company": {
-          "name": "Browning Technologies",
-          "description": "Browning Technologies is a rapidly growing technology company specializing in e-commerce solutions. We offer a dynamic and collaborative work environment where employees are encouraged to think creatively and innovate.",
-          "contactEmail": "contact@consecteturadipisicing.com",
-          "contactPhone": "555-555-5555"
-        }
-      },
-      {
-        "id": "6",
-        "title": "React Native Developer",
-        "type": "Full-Time",
-        "description": "Join our team as a Front-End Developer in beautiful Portland, OR. We are looking for a skilled and enthusiastic individual to help us create innovative web solutions. Competitive salary and great benefits package available.",
-        "location": "Portland, OR",
-        "salary": "$100K - $110K",
-        "company": {
-          "name": "Port Solutions INC",
-          "description": "Port Solutions is a leading technology company specializing in software development and digital marketing. We are committed to providing our clients with cutting-edge solutions and our employees with a supportive and rewarding work environment.",
-          "contactEmail": "contact@ipsumlorem.com",
-          "contactPhone": "555-555-5555"
-        }
-      }
-    ]
-  
+[
+    {
+      "id": 1,
+      "posterName": "Emily Johnson",
+      "businessIdea": "A mobile app for on-demand pet grooming services",
+      "location": "Remote",
+      "investment": "20.000 DKK",
+      "requiredSkills": [
+        "Mobile App Development",
+        "UI/UX Design",
+        "Marketing"
+      ],
+      "description": "I have an idea for an app that connects pet owners with professional groomers in their area. I'm looking for a technical co-founder to help build the app and a marketing expert to drive user acquisition."
+    },
+    {
+      "id": 2,
+      "posterName": "David Kim",
+      "businessIdea": "A subscription-based meal delivery service for busy professionals",
+      "location": "Remote",
+      "investment": "10.000 DKK",
+      "requiredSkills": [
+        "Logistics",
+        "Supply Chain Management",
+        "Business Development"
+      ],
+      "description": "I'm a chef with a passion for healthy and delicious meals. I want to start a meal delivery service that caters to the dietary needs of busy professionals. I need partners with expertise in logistics and business development."
+    },
+    {
+      "id": 3,
+      "posterName": "Sarah Thompson",
+      "businessIdea": "An online marketplace for handmade and artisanal products",
+      "location": "Copenhagen",
+      "investment": "None to start",
+      "requiredSkills": [
+        "E-commerce",
+        "Product Photography",
+        "Social Media Marketing"
+      ],
+      "description": "I have a vision to create an online platform that connects talented artisans and craftspeople with buyers who appreciate unique, handmade products. I'm seeking partners skilled in e-commerce, photography, and social media marketing."
+    },
+    {
+      "id": 4,
+      "posterName": "Michael Lee",
+      "businessIdea": "A platform for virtual language tutoring and cultural exchange",
+      "location": "Copenhagen, Vesterbro",
+      "investment": "5.000 DKK",
+      "requiredSkills": [
+        "Web Development",
+        "Language Teaching",
+        "Community Building"
+      ],
+      "description": "I want to build a platform that connects language learners with native speakers for virtual tutoring and cultural exchange. I need partners with web development skills and experience in language teaching or community building."
+    },
+    {
+      "id": 5,
+      "posterName": "Jessica Park",
+      "businessIdea": "A sustainable fashion brand focused on eco-friendly and ethical practices",
+      "location": "Remote",
+      "investment": "20.000 DKK",
+      "requiredSkills": [
+        "Fashion Design",
+        "Sustainability",
+        "Supply Chain Management"
+      ],
+      "description": "My passion is to create a fashion brand that promotes sustainability and ethical practices throughout the supply chain. I'm looking for partners with expertise in fashion design, sustainable materials, and supply chain management."
+    },
+    {
+      "id": 6,
+      "posterName": "Alice Johnson",
+      "businessIdea": "Light Design Studio",
+      "investment": "80.000 DKK",
+      "location": "Copenhagen",
+      "requiredSkills": ["Marketing", "Interior Design", "Supply Chain Management"],
+      "description": "Looking for a passionate co-founder to launch a sustainable flight design brand. Ideal partner should have experience in marketing, e-commerce, and supply chain management. Let's create a brand that makes a difference!"
+    },
+    {
+      "id": 7,
+      "posterName": "Bob Smith",
+      "businessIdea": "AI-Powered Financial Advisory App",
+      "investment": "15.000 DKK",
+      "requiredSkills": ["AI Development", "Finance", "App Development"],
+      "description": "Seeking a tech-savvy co-founder with expertise in AI and finance to develop an AI-powered financial advisory app. If you are interested in revolutionizing personal finance, join me!"
+    },
+    {
+      "id": 8,
+      "posterName": "Carol Martinez",
+      "businessIdea": "Health and Wellness Platform",
+      "investment": "60.000 DKK",
+      "location": "Frederiksberg",
+      "requiredSkills": ["Web Development", "Content Creation", "SEO"],
+      "description": "Looking for a co-founder to build a comprehensive health and wellness platform. Skills in web development, content creation, and SEO are essential. Let's promote healthy living together."
+    },
+    {
+      "id": 9,
+      "posterName": "David Lee",
+      "businessIdea": "Virtual Reality Gaming Studio",
+      "investment": "None",
+      "location": "Remote",
+      "requiredSkills": ["Game Design", "VR Development", "Project Management"],
+      "description": "Seeking a creative and technical co-founder for a virtual reality gaming studio. Must have experience in game design, VR development, and project management. Let's create the next big thing in gaming!"
+    },
+    {
+      "id": 10,
+      "posterName": "Eva Green",
+      "businessIdea": "Organic Skincare Line",
+      "investment": "5.000 DKK",
+      "location": "Copenhagen",
+      "requiredSkills": ["Chemistry", "Product Development", "Branding"],
+      "description": "Passionate about skincare? Join me in creating an organic skincare line. Looking for a co-founder with a background in chemistry, product development, and branding."
+    }
+
+  ]

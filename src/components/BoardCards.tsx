@@ -12,10 +12,10 @@ const BoardCards = () => {
             Browse our adds a see if you find something interesting
           </p>
           <Link
-            to='/jobs'
+            to='/ads'
             className='inline-block bg-black text-white rounded-lg px-4 py-2 hover:bg-gray-700'
           >
-            Browse Postings
+            Browse Ads
           </Link>
         </Card>
         <Card bg='bg-indigo-300'>
@@ -24,10 +24,10 @@ const BoardCards = () => {
             List your idea to find the perfect founder partner 
           </p>
           <Link
-            to='/add-job'
+            to='/post-ad'
             className='inline-block bg-indigo-500 text-white rounded-lg px-4 py-2 hover:bg-indigo-600'
           >
-            Add Post
+            Post Ad
           </Link>
         </Card>
       </div>

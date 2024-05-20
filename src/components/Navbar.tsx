@@ -3,6 +3,12 @@ import logo from "../assets/img/founder.png"
 
 
 const Navbar = () => {
+
+  const linkClass = ({ isActive }: { isActive: boolean}) =>
+    isActive
+      ? 'bg-black text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2'
+      : 'text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2';
+
    
   return (
 
@@ -17,6 +23,17 @@ const Navbar = () => {
               </span>
             </NavLink>
             <div className='md:ml-auto'>
+              <div className='flex space-x-2'>
+              <NavLink to='/' className={linkClass}>
+                  Home
+                </NavLink>
+                <NavLink to='/ads' className={linkClass}>
+                  Ads
+                </NavLink>
+                <NavLink to='/post-ad' className={linkClass}>
+                  Post Ad
+                </NavLink>
+              </div>
               
             </div>
           </div>

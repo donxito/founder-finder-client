@@ -1,26 +1,20 @@
+import { Route, Routes } from "react-router-dom";
 
-import Navbar from "./components/Navbar"
-import Hero from "./components/Hero"
-import BoardCards from "./components/BoardCards"
-import FounderListings from "./components/FounderListings"
-import ViewAllAds from "./components/ViewAllAds"
+import HomePage from "./pages/HomePage";
+import Mainlayout from "./layouts/MainLayout";
+import AdsPage from "./pages/AdsPage";
+import NotFound from "./pages/NotFound";
 
-
-function App () {
-  
+function App() {
   return (
-    <>
-
-    <Navbar/>
-    <Hero />
-    <BoardCards/>
-    <FounderListings/>
-    <ViewAllAds/>
-
-    </>
-  
-    
-  )
+    <Routes>
+      <Route path="/" element={<Mainlayout />}>
+        <Route index element={<HomePage />} />
+        <Route path="/ads" element={<AdsPage />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
+  );
 }
 
-export default App
+export default App;
