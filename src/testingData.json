@@ -1,4 +1,6 @@
-[
+{
+  "founders": [
+    
     {
       "id": 1,
       "posterName": "Emily Johnson",
@@ -110,3 +112,4 @@
     }
 
   ]
+}

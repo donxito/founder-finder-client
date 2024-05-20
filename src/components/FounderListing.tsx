@@ -18,6 +18,7 @@ interface FounderListingProps {
 
 const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
   const [showFullDescription, setShowFullDescription] = useState(false);
+  const [showSkills, setShowSkills] = useState(false);
 
   let description = ad.description;
 
@@ -27,6 +28,16 @@ const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
 
   const handleClick = () => {
     setShowFullDescription(!showFullDescription);
+  };
+
+  let skills = ad.requiredSkills;
+
+  if (!skills) {
+    skills = [];
+  }
+
+  const handleShowSkills = () => {
+    setShowSkills(!showSkills);
   };
 
   return (
@@ -42,15 +53,23 @@ const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
         >
           {showFullDescription ? "Less" : "More"}
         </button>
-        
-        <p className="text-gray-800 mt-4 font-medium">Must Have Skills:</p>
-        <ul className="text-gray-600 my-2 list-disc pl-5 font-light text-sm">
-          {ad.requiredSkills.map((skill, index) => (
-            <li key={index}>{skill}</li>
-          ))}
-        </ul>
+        <div className="border border-gray-100 mb-5"></div>
 
-        <p className="text-indigo-500 mt-2">Investment: {ad.investment}</p>
+        <button
+          className="text-indigo-500 hover:text-indigo-600 mb-4 font-medium"
+          onClick={handleShowSkills}
+        >
+          Must Have Skills
+        </button>
+        {showSkills && (
+          <ul className="text-gray-600 my-2 list-disc pl-5 font-light text-sm">
+            {skills.map((skill, index) => (
+              <li key={index}>{skill}</li>
+            ))}
+          </ul>
+        )}
+
+        <p className="text-gray-500 mt-2">Investment: {ad.investment}</p>
 
         <div className="border border-gray-100 mb-5"></div>
 
