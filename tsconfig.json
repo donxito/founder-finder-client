@@ -13,6 +13,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "outDir": "./dist",
 
     /* Linting */
     "strict": true,
@@ -20,6 +21,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["src", "src/components/NewFileName.tsx"], 
   "references": [{ "path": "./tsconfig.node.json" }]
 }

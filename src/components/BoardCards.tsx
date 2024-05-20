@@ -18,7 +18,7 @@ const BoardCards = () => {
             Browse Postings
           </Link>
         </Card>
-        <Card bg='bg-indigo-200'>
+        <Card bg='bg-indigo-300'>
           <h2 className='text-2xl font-bold'>Add your Idea</h2>
           <p className='mt-2 mb-4'>
             List your idea to find the perfect founder partner 

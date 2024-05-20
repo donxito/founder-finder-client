@@ -2,6 +2,8 @@
 import Navbar from "./components/Navbar"
 import Hero from "./components/Hero"
 import BoardCards from "./components/BoardCards"
+import FounderListings from "./components/FounderListings"
+import ViewAllAds from "./components/ViewAllAds"
 
 
 function App () {
@@ -12,6 +14,8 @@ function App () {
     <Navbar/>
     <Hero />
     <BoardCards/>
+    <FounderListings/>
+    <ViewAllAds/>
 
     </>
   
