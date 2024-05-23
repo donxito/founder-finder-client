@@ -1,114 +1,232 @@
 {
-  "founders": [
-    
+  "ads": [
     {
       "id": 1,
-      "posterName": "Emily Johnson",
-      "businessIdea": "A mobile app for on-demand pet grooming services",
-      "location": "Remote",
-      "investment": "20.000 DKK",
+      "posterName": "Sophie Nielsen",
+      "posterInfo": {
+        "name": "Sophie Nielsen",
+        "about": "I'm a software engineer with a passion for sustainable technology solutions.",
+        "email": "sophie@mail.com",
+        "phone": 123456
+      },
+      "businessIdea": "An app for promoting sustainable lifestyle choices",
+      "location": "Aarhus",
+      "investment": "30.000 DKK",
       "requiredSkills": [
-        "Mobile App Development",
-        "UI/UX Design",
+        "App Development",
+        "Sustainability",
         "Marketing"
       ],
-      "description": "I have an idea for an app that connects pet owners with professional groomers in their area. I'm looking for a technical co-founder to help build the app and a marketing expert to drive user acquisition."
+      "description": "I want to develop an app that educates and incentivizes users to adopt sustainable lifestyle practices, such as recycling, reducing energy consumption, and supporting ethical brands. The app will feature challenges, rewards, and community engagement features. I'm seeking partners skilled in app development, sustainability, and marketing to collaborate on this project."
     },
     {
       "id": 2,
-      "posterName": "David Kim",
-      "businessIdea": "A subscription-based meal delivery service for busy professionals",
-      "location": "Remote",
-      "investment": "10.000 DKK",
+      "posterName": "Emil Pedersen",
+      "posterInfo": {
+        "name": "Emil Pedersen",
+        "about": "I'm an experienced chef with a love for fusion cuisine.",
+        "email": "emil@mail.com",
+        "phone": 234567
+      },
+      "businessIdea": "A food truck serving gourmet street food",
+      "location": "Copenhagen",
+      "investment": "40.000 DKK",
       "requiredSkills": [
-        "Logistics",
-        "Supply Chain Management",
-        "Business Development"
+        "Culinary Arts",
+        "Business Management",
+        "Food Safety Regulations"
       ],
-      "description": "I'm a chef with a passion for healthy and delicious meals. I want to start a meal delivery service that caters to the dietary needs of busy professionals. I need partners with expertise in logistics and business development."
+      "description": "I envision launching a food truck that offers gourmet street food with international flavors and locally sourced ingredients. The menu will feature creative dishes inspired by global cuisine, served in a convenient and accessible format. I'm seeking partners skilled in culinary arts, business management, and food safety regulations to join me in this venture."
     },
     {
       "id": 3,
-      "posterName": "Sarah Thompson",
-      "businessIdea": "An online marketplace for handmade and artisanal products",
-      "location": "Copenhagen",
-      "investment": "None to start",
+      "posterName": "Mads Jensen",
+      "posterInfo": {
+        "name": "Mads Jensen",
+        "about": "I'm a marketing strategist with a passion for helping businesses grow.",
+        "email": "mads@mail.com",
+        "phone": 345678
+      },
+      "businessIdea": "A digital marketing agency specializing in social media management",
+      "location": "Aalborg",
+      "investment": "35.000 DKK",
       "requiredSkills": [
-        "E-commerce",
-        "Product Photography",
-        "Social Media Marketing"
+        "Digital Marketing",
+        "Social Media Management",
+        "Client Relations"
       ],
-      "description": "I have a vision to create an online platform that connects talented artisans and craftspeople with buyers who appreciate unique, handmade products. I'm seeking partners skilled in e-commerce, photography, and social media marketing."
+      "description": "I want to establish a digital marketing agency that specializes in managing social media accounts for businesses across various industries. Our services will include content creation, community engagement, and performance analytics. I'm seeking partners skilled in digital marketing, social media management, and client relations to collaborate on this project."
     },
     {
       "id": 4,
-      "posterName": "Michael Lee",
-      "businessIdea": "A platform for virtual language tutoring and cultural exchange",
-      "location": "Copenhagen, Vesterbro",
-      "investment": "5.000 DKK",
+      "posterName": "Laura Christensen",
+      "posterInfo": {
+        "name": "Laura Christensen",
+        "about": "I'm an interior designer passionate about creating functional and stylish spaces.",
+        "email": "laura@mail.com",
+        "phone": 456789
+      },
+      "businessIdea": "An online platform for interior design consultations",
+      "location": "Odense",
+      "investment": "25.000 DKK",
       "requiredSkills": [
-        "Web Development",
-        "Language Teaching",
-        "Community Building"
+        "Interior Design",
+        "Client Communication",
+        "Online Platform Development"
       ],
-      "description": "I want to build a platform that connects language learners with native speakers for virtual tutoring and cultural exchange. I need partners with web development skills and experience in language teaching or community building."
+      "description": "I want to create an online platform that connects homeowners with interior designers for virtual consultations and design services. The platform will streamline the design process, from initial concept development to product sourcing. I'm seeking partners skilled in interior design, client communication, and online platform development to collaborate on this project."
     },
     {
       "id": 5,
-      "posterName": "Jessica Park",
-      "businessIdea": "A sustainable fashion brand focused on eco-friendly and ethical practices",
-      "location": "Remote",
+      "posterName": "Nikolaj Olsen",
+      "posterInfo": {
+        "name": "Nikolaj Olsen",
+        "about": "I'm a fitness trainer dedicated to helping individuals achieve their health and wellness goals.",
+        "email": "nikolaj@mail.com",
+        "phone": 567890
+      },
+      "businessIdea": "A boutique fitness studio offering personalized training programs",
+      "location": "Esbjerg",
+      "investment": "50.000 DKK",
+      "requiredSkills": [
+        "Fitness Training",
+        "Nutrition",
+        "Business Management"
+      ],
+      "description": "I envision opening a boutique fitness studio that provides personalized training programs tailored to each client's unique needs and goals. The studio will offer a range of services, including one-on-one sessions, group classes, and nutritional guidance. I'm seeking partners skilled in fitness training, nutrition, and business management to join me in this venture."
+    },
+    {
+      "id": 6,
+      "posterName": "Emma Larsen",
+      "posterInfo": {
+        "name": "Emma Larsen",
+        "about": "I'm a fashion designer with a passion for sustainable and inclusive fashion.",
+        "email": "emma@mail.com",
+        "phone": 678901
+      },
+      "businessIdea": "An eco-friendly clothing line for children",
+      "location": "Frederiksberg",
       "investment": "20.000 DKK",
       "requiredSkills": [
         "Fashion Design",
         "Sustainability",
         "Supply Chain Management"
       ],
-      "description": "My passion is to create a fashion brand that promotes sustainability and ethical practices throughout the supply chain. I'm looking for partners with expertise in fashion design, sustainable materials, and supply chain management."
-    },
-    {
-      "id": 6,
-      "posterName": "Alice Johnson",
-      "businessIdea": "Light Design Studio",
-      "investment": "80.000 DKK",
-      "location": "Copenhagen",
-      "requiredSkills": ["Marketing", "Interior Design", "Supply Chain Management"],
-      "description": "Looking for a passionate co-founder to launch a sustainable flight design brand. Ideal partner should have experience in marketing, e-commerce, and supply chain management. Let's create a brand that makes a difference!"
+      "description": "I want to launch an eco-friendly clothing line for children that prioritizes sustainable materials, ethical production practices, and inclusive designs. The clothing line will promote environmental stewardship and positive social impact. I'm seeking partners skilled in fashion design, sustainability, and supply chain management to collaborate on this project."
     },
     {
       "id": 7,
-      "posterName": "Bob Smith",
-      "businessIdea": "AI-Powered Financial Advisory App",
-      "investment": "15.000 DKK",
-      "requiredSkills": ["AI Development", "Finance", "App Development"],
-      "description": "Seeking a tech-savvy co-founder with expertise in AI and finance to develop an AI-powered financial advisory app. If you are interested in revolutionizing personal finance, join me!"
+      "posterName": "Jonas Andersen",
+      "posterInfo": {
+        "name": "Jonas Andersen",
+        "about": "I'm a graphic designer with a passion for creating visually stunning brand identities.",
+        "email": "jonas@mail.com",
+        "phone": 789012
+      },
+      "businessIdea": "A graphic design agency specializing in branding for startups",
+      "location": "Horsens",
+      "investment": "30.000 DKK",
+      "requiredSkills": [
+        "Graphic Design",
+        "Brand Identity",
+        "Client Collaboration"
+      ],
+      "description": "I envision starting a graphic design agency that caters specifically to startups, helping them establish compelling brand identities that resonate with their target audience. Our services will include logo design, visual branding, and marketing collateral. I'm seeking partners skilled in graphic design, brand identity, and client collaboration to join me in this venture."
     },
     {
       "id": 8,
-      "posterName": "Carol Martinez",
-      "businessIdea": "Health and Wellness Platform",
-      "investment": "60.000 DKK",
-      "location": "Frederiksberg",
-      "requiredSkills": ["Web Development", "Content Creation", "SEO"],
-      "description": "Looking for a co-founder to build a comprehensive health and wellness platform. Skills in web development, content creation, and SEO are essential. Let's promote healthy living together."
+      "posterName": "Ida Rasmussen",
+      "posterInfo": {
+        "name": "Ida Rasmussen",
+        "about": "I'm a web developer passionate about creating user-friendly and accessible digital experiences.",
+        "email": "ida@mail.com",
+        "phone": 890123
+      },
+      "businessIdea": "An online marketplace for handmade artisanal products",
+      "location": "Roskilde",
+      "investment": "25.000 DKK",
+      "requiredSkills": [
+        "Web Development",
+        "E-commerce",
+        "Marketing"
+      ],
+      "description": "I want to create an online marketplace that connects artisans and craftspeople with consumers who appreciate handmade and unique products. The platform will feature a wide range of items, from jewelry and home decor to clothing and art. I'm seeking partners skilled in web development, e-commerce, and marketing to collaborate on this project."
     },
     {
       "id": 9,
-      "posterName": "David Lee",
-      "businessIdea": "Virtual Reality Gaming Studio",
-      "investment": "None",
-      "location": "Remote",
-      "requiredSkills": ["Game Design", "VR Development", "Project Management"],
-      "description": "Seeking a creative and technical co-founder for a virtual reality gaming studio. Must have experience in game design, VR development, and project management. Let's create the next big thing in gaming!"
+      "posterName": "Frederik Poulsen",
+      "posterInfo": {
+        "name": "Frederik Poulsen",
+        "about": "I'm a professional photographer with a passion for capturing memorable moments.",
+        "email": "frederik@mail.com",
+        "phone": 901234
+      },
+      "businessIdea": "A photography studio specializing in family portraits",
+      "location": "Vejle",
+      "investment": "20.000 DKK",
+      "requiredSkills": [
+        "Photography",
+        "Client Management",
+        "Studio Management"
+      ],
+      "description": "I envision opening a photography studio that focuses on capturing beautiful and timeless family portraits. The studio will provide a comfortable and inviting environment for families to create lasting memories together. I'm seeking partners skilled in photography, client management, and studio management to join me in this venture."
     },
     {
       "id": 10,
-      "posterName": "Eva Green",
-      "businessIdea": "Organic Skincare Line",
-      "investment": "5.000 DKK",
-      "location": "Copenhagen",
-      "requiredSkills": ["Chemistry", "Product Development", "Branding"],
-      "description": "Passionate about skincare? Join me in creating an organic skincare line. Looking for a co-founder with a background in chemistry, product development, and branding."
+      "posterName": "Amalie Møller",
+      "posterInfo": {
+        "name": "Amalie Møller",
+        "about": "I'm a yoga instructor passionate about promoting health and wellness.",
+        "email": "amalie@mail.com",
+        "phone": 123456
+      },
+      "businessIdea": "A wellness retreat center offering yoga and meditation retreats",
+      "location": "Silkeborg",
+      "investment": "50.000 DKK",
+      "requiredSkills": [
+        "Yoga Instruction",
+        "Event Planning",
+        "Hospitality Management"
+      ],
+      "description": "I want to establish a wellness retreat center that provides transformative experiences through yoga and meditation retreats. The center will offer immersive programs focused on relaxation, self-discovery, and holistic well-being. I'm seeking partners skilled in yoga instruction, event planning, and hospitality management to collaborate on this project."
+    },
+    {
+      "id": 11,
+      "posterName": "Mathias Christensen",
+      "posterInfo": {
+        "name": "Mathias Christensen",
+        "about": "I'm a renewable energy engineer dedicated to advancing sustainable energy solutions.",
+        "email": "mathias@mail.com",
+        "phone": 234567
+      },
+      "businessIdea": "A renewable energy consultancy firm",
+      "location": "Helsingør",
+      "investment": "40.000 DKK",
+      "requiredSkills": [
+        "Renewable Energy",
+        "Consulting",
+        "Project Management"
+      ],
+      "description": "I envision starting a consultancy firm that specializes in advising businesses and governments on renewable energy projects. Our services will include feasibility studies, technology assessments, and project management support. I'm seeking partners skilled in renewable energy, consulting, and project management to join me in this venture."
+    },
+    {
+      "id": 12,
+      "posterName": "Signe Jensen",
+      "posterInfo": {
+        "name": "Signe Jensen",
+        "about": "I'm a professional chef with a passion for creating delicious and healthy meals.",
+        "email": "signe@mail.com",
+        "phone": 345678
+      },
+      "businessIdea": "A meal prep service for busy individuals",
+      "location": "Kolding",
+      "investment": "30.000 DKK",
+      "requiredSkills": [
+        "Culinary Arts",
+        "Logistics",
+        "Marketing"
+      ],
+      "description": "I want to launch a meal prep service that provides busy individuals with nutritious and convenient meal options. Customers can customize their meal plans based on dietary preferences and portion sizes, and we'll deliver freshly prepared meals to their doorstep. I'm seeking partners skilled in culinary arts, logistics, and marketing to collaborate on this project."
     }
 
   ]

@@ -1,33 +1,40 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import FounderListing, { Ad } from "./FounderListing";
 import Spinner from "./Spinner";
 
-const FounderListings = ({ isHome = false }) => {
+interface Props {
+  isHome?: boolean;
+}
 
-
-  const [ads, setAds] = useState([]);
-  const [loading, setLoading] = useState(true);
+const FounderListings: React.FC<Props> = ({ isHome = false }) => {
+  const [ads, setAds] = useState<Ad[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchAds = async () => {
       const apiUrl = isHome 
-      ? "/api/founders?_limit=3" 
-      : "/api/founders";
-
+        ? "/api/ads?_limit=3" 
+        : "/api/ads";
+  
       try {
         const res = await fetch(apiUrl);
+        
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+  
         const data = await res.json();
         setAds(data);
       } catch (error) {
-        console.error(error);
+        console.error("Error fetching data:", error);
       } finally {
         setLoading(false);
       }
     };
+  
     fetchAds();
-  }, []);
-
-  useEffect;
+  }, [isHome]);
+  
 
   return (
     <section className="bg-blue-50 px-4 py-10">
