@@ -80,14 +80,25 @@ const AdPage = () => {
                 <h3 className="text-indigo-800 text-lg font-bold mb-6">
                   Description
                 </h3>
-
                 <p className="mb-4">{ad?.description}</p>
 
                 <h3 className="text-indigo-800 text-lg font-bold mb-2">
                   Initial Investment
                 </h3>
-
                 <p className="mb-4">{ad?.investment}</p>
+
+
+                <h4 className="text-indigo-800 text-lg font-semibold mb-2">
+                  Must Have Skills
+                </h4>
+
+                <p className="mb-4">{ad?.requiredSkills.map((skill, index) => {
+                  return <li key={index}>{skill}</li>
+                })}</p>
+
+            
+
+
               </div>
             </main>
 

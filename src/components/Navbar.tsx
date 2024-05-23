@@ -30,7 +30,7 @@ const Navbar = () => {
                 <NavLink to='/ads' className={linkClass}>
                   Ads
                 </NavLink>
-                <NavLink to='/post-ad' className={linkClass}>
+                <NavLink to='/add-ad' className={linkClass}>
                   Post Ad
                 </NavLink>
               </div>

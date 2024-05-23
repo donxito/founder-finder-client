@@ -24,7 +24,7 @@ const BoardCards = () => {
             List your idea to find the perfect founder partner 
           </p>
           <Link
-            to='/post-ad'
+            to='/add-ad'
             className='inline-block bg-indigo-500 text-white rounded-lg px-4 py-2 hover:bg-indigo-600'
           >
             Post Ad
