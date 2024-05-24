@@ -1,7 +1,10 @@
 {
   "ads": [
     {
-      "id": "1",
+      "businessIdea": "An app for promoting sustainable lifestyle choices",
+      "description": "I want to develop an app that educates and incentivizes users to adopt sustainable lifestyle practices, such as recycling, reducing energy consumption, and supporting ethical brands. The app will feature challenges, rewards, and community engagement features. I'm seeking partners skilled in app development, sustainability, and marketing to collaborate on this project.",
+      "investment": "30.000 DKK - 40.000 DKK",
+      "location": "Aarhus",
       "posterName": "Sophie Nielsen",
       "posterInfo": {
         "name": "Sophie Nielsen",
@@ -9,15 +12,12 @@
         "email": "sophie@mail.com",
         "phone": 123456
       },
-      "businessIdea": "An app for promoting sustainable lifestyle choices",
-      "location": "Aarhus",
-      "investment": "30.000 DKK",
       "requiredSkills": [
         "App Development",
         "Sustainability",
         "Marketing"
       ],
-      "description": "I want to develop an app that educates and incentivizes users to adopt sustainable lifestyle practices, such as recycling, reducing energy consumption, and supporting ethical brands. The app will feature challenges, rewards, and community engagement features. I'm seeking partners skilled in app development, sustainability, and marketing to collaborate on this project."
+      "id": "1"
     },
     {
       "id": "2",
@@ -96,7 +96,10 @@
       "description": "I envision opening a boutique fitness studio that provides personalized training programs tailored to each client's unique needs and goals. The studio will offer a range of services, including one-on-one sessions, group classes, and nutritional guidance. I'm seeking partners skilled in fitness training, nutrition, and business management to join me in this venture."
     },
     {
-      "id": "6",
+      "businessIdea": "An eco-friendly clothing line for children",
+      "description": "I want to launch an eco-friendly clothing line for children that prioritizes sustainable materials, ethical production practices, and inclusive designs. The clothing line will promote environmental stewardship and positive social impact. I'm seeking a skilled partner in fashion design, sustainability, and supply chain management to collaborate on this project.",
+      "investment": "Under 10.000 DKK",
+      "location": "Frederiksberg",
       "posterName": "Emma Larsen",
       "posterInfo": {
         "name": "Emma Larsen",
@@ -104,15 +107,12 @@
         "email": "emma@mail.com",
         "phone": 678901
       },
-      "businessIdea": "An eco-friendly clothing line for children",
-      "location": "Frederiksberg",
-      "investment": "20.000 DKK",
       "requiredSkills": [
         "Fashion Design",
         "Sustainability",
         "Supply Chain Management"
       ],
-      "description": "I want to launch an eco-friendly clothing line for children that prioritizes sustainable materials, ethical production practices, and inclusive designs. The clothing line will promote environmental stewardship and positive social impact. I'm seeking partners skilled in fashion design, sustainability, and supply chain management to collaborate on this project."
+      "id": "6"
     },
     {
       "id": "7",
@@ -212,7 +212,7 @@
     {
       "businessIdea": "A meal prep service for busy individuals and lazy people",
       "description": "I want to launch a meal prep service that provides busy individuals with nutritious and convenient meal options. Customers can customize their meal plans based on dietary preferences and portion sizes, and we'll deliver freshly prepared meals to their doorstep. I'm seeking partners skilled in culinary arts, logistics, and marketing to collaborate on this project.",
-      "investment": "No Idea",
+      "investment": "Under 10.000 DKK",
       "location": "Kolding",
       "posterName": "Signe Jensen",
       "posterInfo": {

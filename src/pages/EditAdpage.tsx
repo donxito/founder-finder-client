@@ -2,10 +2,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { getAdData, editAd } from "../services/adService"; 
+import { getAdData, editAd } from "../services/adService";
 
 const EditAdPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id: string }>(); // Get the ad ID from the URL
+
   const [businessIdea, setBusinessIdea] = useState("");
   const [description, setDescription] = useState("");
   const [investment, setInvestment] = useState("");
@@ -19,10 +20,12 @@ const EditAdPage: React.FC = () => {
 
   const navigate = useNavigate();
 
+  // useEffect hook to fetch ad data when the component mounts
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const adData = await getAdData(id!);
+        const adData = await getAdData(id!); // Fetch ad data using the ID
+        // Populate the state variables with the fetched ad data
         setBusinessIdea(adData.businessIdea);
         setDescription(adData.description);
         setInvestment(adData.investment);
@@ -39,6 +42,7 @@ const EditAdPage: React.FC = () => {
     fetchData();
   }, [id]);
 
+  // Function to handle adding a new skill
   const handleAddSkill = () => {
     if (newSkill.trim() !== "") {
       setRequiredSkills([...requiredSkills, newSkill.trim()]);
@@ -46,10 +50,12 @@ const EditAdPage: React.FC = () => {
     }
   };
 
+  // Function to handle removing a skill
   const handleRemoveSkill = (index: number) => {
     setRequiredSkills(requiredSkills.filter((_, i) => i !== index));
   };
 
+  // Function to handle form submission
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const adData = {
@@ -68,9 +74,10 @@ const EditAdPage: React.FC = () => {
     };
 
     try {
+      // Update the ad with the new data
       await editAd(id!, adData);
       toast.success("Your Ad has been updated successfully");
-      navigate("/ads");
+      navigate(`/ads/${id}`);
     } catch (error) {
       toast.error("Failed to update ad");
       console.error("Failed to update ad", error);
@@ -119,7 +126,10 @@ const EditAdPage: React.FC = () => {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="type" className="block text-gray-700 font-bold mb-2">
+              <label
+                htmlFor="type"
+                className="block text-gray-700 font-bold mb-2"
+              >
                 Initial Investment
               </label>
               <select
@@ -133,21 +143,41 @@ const EditAdPage: React.FC = () => {
                 <option value="">Select Investment</option>
                 <option value="No Idea">No Idea</option>
                 <option value="Under 10.000 DKK">Under 10.000 DKK</option>
-                <option value="10.000 DKK - 20.000 DKK">10.000 DKK - 20.000 DKK</option>
-                <option value="20.000 DKK - 30.000 DKK">20.000 DKK - 30.000 DKK</option>
-                <option value="30.000 DKK - 40.000 DKK">30.000 DKK - 40.000 DKK</option>
-                <option value="40.000 DKK - 50.000 DKK">40.000 DKK - 50.000 DKK</option>
-                <option value="50.000 DKK - 60.000 DKK">50.000 DKK - 60.000 DKK</option>
-                <option value="60.000 DKK - 70.000 DKK">60.000 DKK - 70.000 DKK</option>
-                <option value="70.000 DKK - 80.000 DKK">70.000 DKK - 80.000 DKK</option>
-                <option value="80.000 DKK - 90.000 DKK">80.000 DKK - 90.000 DKK</option>
-                <option value="90.000 DKK - 100.000 DKK">90.000 DKK - 100.000 DKK</option>
+                <option value="10.000 DKK - 20.000 DKK">
+                  10.000 DKK - 20.000 DKK
+                </option>
+                <option value="20.000 DKK - 30.000 DKK">
+                  20.000 DKK - 30.000 DKK
+                </option>
+                <option value="30.000 DKK - 40.000 DKK">
+                  30.000 DKK - 40.000 DKK
+                </option>
+                <option value="40.000 DKK - 50.000 DKK">
+                  40.000 DKK - 50.000 DKK
+                </option>
+                <option value="50.000 DKK - 60.000 DKK">
+                  50.000 DKK - 60.000 DKK
+                </option>
+                <option value="60.000 DKK - 70.000 DKK">
+                  60.000 DKK - 70.000 DKK
+                </option>
+                <option value="70.000 DKK - 80.000 DKK">
+                  70.000 DKK - 80.000 DKK
+                </option>
+                <option value="80.000 DKK - 90.000 DKK">
+                  80.000 DKK - 90.000 DKK
+                </option>
+                <option value="90.000 DKK - 100.000 DKK">
+                  90.000 DKK - 100.000 DKK
+                </option>
                 <option value="Over 100.000 DKK">Over 100.000 DKK</option>
               </select>
             </div>
 
             <div className="mb-4">
-              <label className="block text-gray-700 font-bold mb-2">Location</label>
+              <label className="block text-gray-700 font-bold mb-2">
+                Location
+              </label>
               <input
                 type="text"
                 id="location"
@@ -161,7 +191,9 @@ const EditAdPage: React.FC = () => {
             </div>
 
             <div className="mb-4">
-              <label className="block text-gray-700 font-bold mb-2">Must Have Skills</label>
+              <label className="block text-gray-700 font-bold mb-2">
+                Must Have Skills
+              </label>
               <div className="flex">
                 <input
                   type="text"
@@ -182,7 +214,10 @@ const EditAdPage: React.FC = () => {
               </div>
               <ul>
                 {requiredSkills.map((skill, index) => (
-                  <li key={index} className="flex justify-between items-center mt-2">
+                  <li
+                    key={index}
+                    className="flex justify-between items-center mt-2"
+                  >
                     {skill}
                     <button
                       type="button"
@@ -199,7 +234,10 @@ const EditAdPage: React.FC = () => {
             <h3 className="text-2xl mb-5">User Info</h3>
 
             <div className="mb-4">
-              <label htmlFor="posterName" className="block text-gray-700 font-bold mb-2">
+              <label
+                htmlFor="posterName"
+                className="block text-gray-700 font-bold mb-2"
+              >
                 Your Name
               </label>
               <input
@@ -283,4 +321,3 @@ const EditAdPage: React.FC = () => {
 };
 
 export default EditAdPage;
- 
