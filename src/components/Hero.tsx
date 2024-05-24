@@ -7,13 +7,13 @@ const Hero = () => {
 
 
   return (
-    <section className='bg-slate-600 py-20 mb-4'>
+    <section className='bg-slate-700 py-20 mb-4'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center'>
         <div className='text-center'>
-          <h1 className='text-4xl font-extrabold text-white sm:text-5xl md:text-6xl'>
+          <h1 className='text-4xl font-extrabold text-zinc-300 sm:text-5xl md:text-6xl'>
             {title}
           </h1>
-          <p className='my-4 text-xl text-white'>{subtitle}</p>
+          <p className='my-6 py-6 text-xl text-zinc-200'>{subtitle}</p>
         </div>
       </div>
     </section>

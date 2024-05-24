@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.underline-effect::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: currentColor;
+    transition: width 0.3s;
+  }
+  
+  .underline-effect:hover::after {
+    width: 100%;
+  }
+  
+  .active-underline::after {
+    width: 100%;
+  }

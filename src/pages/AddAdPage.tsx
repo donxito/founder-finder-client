@@ -57,7 +57,7 @@ const AddAdPage: React.FC<{ addAdSubmit: AddAdSubmitType }> = ({ addAdSubmit }) 
   };
 
   return (
-    <section className="bg-indigo-50">
+    <section className="bg-zinc-100">
       <div className="container m-auto max-w-2xl py-24">
         <div className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0">
           <form onSubmit={handleSubmit}>
@@ -154,7 +154,7 @@ const AddAdPage: React.FC<{ addAdSubmit: AddAdSubmitType }> = ({ addAdSubmit }) 
                 <button
                   type="button"
                   onClick={handleAddSkill}
-                  className="bg-indigo-500 text-white py-2 px-4 ml-2 rounded"
+                  className="bg-secondCyan text-white py-2 px-4 ml-2 rounded"
                 >
                   Add
                 </button>
@@ -248,7 +248,7 @@ const AddAdPage: React.FC<{ addAdSubmit: AddAdSubmitType }> = ({ addAdSubmit }) 
 
             <div>
               <button
-                className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
+                className="bg-secondCyan hover:bg-customCyan text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
                 type="submit"
               >
                 Add Job

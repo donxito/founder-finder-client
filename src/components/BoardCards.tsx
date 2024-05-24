@@ -13,21 +13,21 @@ const BoardCards = () => {
           </p>
           <Link
             to='/ads'
-            className='inline-block bg-black text-white rounded-lg px-4 py-2 hover:bg-gray-700'
+            className='inline-block bg-slate-700 text-white rounded-lg px-4 py-2 hover:bg-secondCyan'
           >
             Browse Ads
           </Link>
         </Card>
-        <Card bg='bg-indigo-300'>
-          <h2 className='text-2xl font-bold'>Add your Idea</h2>
-          <p className='mt-2 mb-4'>
+        <Card bg='bg-secondCyan'>
+          <h2 className='text-2xl font-bold text-white'>Add your Idea</h2>
+          <p className='mt-2 mb-4 text-white'>
             List your idea to find the perfect founder partner 
           </p>
           <Link
             to='/add-ad'
-            className='inline-block bg-indigo-500 text-white rounded-lg px-4 py-2 hover:bg-indigo-600'
+            className='inline-block bg-zinc-300 text-customBlue rounded-lg px-4 py-2 hover:bg-customCyan'
           >
-            Post Ad
+            Post Ads
           </Link>
         </Card>
       </div>

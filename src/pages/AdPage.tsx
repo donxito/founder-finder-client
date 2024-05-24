@@ -75,7 +75,7 @@ const AdPage = ({ deleteAd }: AdPageProps) => {
         <div className="container m-auto py-6 px-6">
           <Link
             to="/ads"
-            className="text-indigo-500 hover:text-indigo-600 flex items-center"
+            className="text-secondCyan hover:text-customCyan flex items-center"
           >
             <FaArrowLeft className="mr-2"></FaArrowLeft> Back to Ad Listings
           </Link>
@@ -83,42 +83,39 @@ const AdPage = ({ deleteAd }: AdPageProps) => {
       </section>
 
 
-      <section className="bg-indigo-50">
+      <section className="bg-zinc-100">
         <div className="container m-auto py-10 px-6">
              {/* grid layout with two columns on larger screens  */} 
           <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-6">
             <main>
               <div className="bg-white p-6 rounded-lg shadow-md text-center md:text-left">
-                <div className="text-gray-500 mb-4">{ad?.posterName}</div>
+                <div className="text-zinc-400 mb-4">{ad?.posterName}</div>
                 <h1 className="text-3xl font-bold mb-4">{ad?.businessIdea}</h1>
                 <div className="text-gray-500 mb-4 flex align-middle justify-center md:justify-start">
-                  <FaMapMarker className="text-lg text-orange-700 mr-2"></FaMapMarker>
-                  <p className="text-orange-700">{ad?.location}</p>
+                  <FaMapMarker className="text-lg text-zinc-600 mr-2"></FaMapMarker>
+                  <p className="text-zinc-600">{ad?.location}</p>
                 </div>
               </div>
 
               <div className="bg-white p-6 rounded-lg shadow-md mt-6">
-                <h3 className="text-indigo-800 text-lg font-bold mb-6">
+                <h3 className="text-customBlue text-lg font-bold mb-6">
                   Description
                 </h3>
                 <p className="mb-4">{ad?.description}</p>
 
-                <h3 className="text-indigo-800 text-lg font-bold mb-2">
+                <h3 className="text-customBlue text-lg font-bold mb-2">
                   Initial Investment
                 </h3>
                 <p className="mb-4">{ad?.investment}</p>
 
 
-                <h4 className="text-indigo-800 text-lg font-semibold mb-2">
+                <h4 className="text-customBlue text-lg font-semibold mb-2">
                   Must Have Skills
                 </h4>
 
                 <p className="mb-4">{ad?.requiredSkills.map((skill, index) => {
                   return <li key={index}>{skill}</li>
                 })}</p>
-
-            
-
 
               </div>
             </main>
@@ -127,9 +124,9 @@ const AdPage = ({ deleteAd }: AdPageProps) => {
               {/*<!-- sidebar */} {/*<!-- Poster Info */}   
             <aside>
               <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-bold mb-6">About me</h3>
+                <h3 className="text-xl font-bold mb-6 text-customBlue">About me</h3>
 
-                <h2 className="text-2xl">{ad?.posterInfo.name}</h2>
+                <h2 className="text-2xl text-zinc-500">{ad?.posterInfo.name}</h2>
 
                 <p className="my-2">{ad?.posterInfo.about}</p>
 
@@ -137,13 +134,13 @@ const AdPage = ({ deleteAd }: AdPageProps) => {
 
                 <h3 className="text-xl">Contact Email:</h3>
 
-                <p className="my-2 bg-indigo-100 p-2 font-bold">
+                <p className="my-2 bg-zinc-200 p-2 font-bold text-gray-600">
                   {ad?.posterInfo.email}
                 </p>
 
                 <h3 className="text-xl">Contact Phone:</h3>
 
-                <p className="my-2 bg-indigo-100 p-2 font-bold">
+                <p className="my-2 bg-zinc-200 p-2 font-bold text-gray-600">
                   {ad?.posterInfo.phone}
                 </p>
               </div>
@@ -151,10 +148,10 @@ const AdPage = ({ deleteAd }: AdPageProps) => {
               {/*<!-- Manage */}
 
               <div className="bg-white p-6 rounded-lg shadow-md mt-6">
-                <h3 className="text-xl font-bold mb-6">Manage Ad</h3>
+                <h3 className="text-xl font-bold mb-6 text-customBlue">Manage Ad</h3>
                 <Link
                   to={`/edit-ad/${ad?.id}`}
-                  className="bg-indigo-500 hover:bg-indigo-600 text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
+                  className="bg-secondCyan hover:bg-customCyan text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
                 >
                   Edit Ad
                 </Link>

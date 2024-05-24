@@ -48,7 +48,7 @@ const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
   return (
     <div className="bg-white rounded-xl shadow-md relative p-4">
       <div className="mb-6">
-        <div className="text-gray-600 my-2">{ad.posterName}</div>
+        <div className="text-zinc-400 my-2">{ad.posterName}</div>
 
         <h3 className="text-xl font-bold">{ad.businessIdea}</h3>
 
@@ -57,40 +57,41 @@ const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
         {/* Button to toggle full description */}
         <button
           onClick={handleClick}
-          className="text-indigo-500 mb-5 hover:text-indigo-600"
+          className="text-secondCyan mb-5 hover:text-customCyan"
         >
           {showFullDescription ? "Less" : "More"}
         </button>
-        <div className="border border-gray-100 mb-5"></div>
+        <div className="border border-slate-100 mb-5"></div>
 
         {/* Button to toggle skills list */}
         <button
-          className="text-indigo-500 hover:text-indigo-600 mb-4 font-medium"
+          className="text-secondCyan hover:text-customCyan mb-4 font-medium"
           onClick={handleShowSkills}
         >
           Must Have Skills
         </button>
         {/* Display skills list if showSkills is true */}
         {showSkills && (
-          <ul className="text-gray-600 my-2 list-disc pl-5 font-light text-sm">
+          <ul className="text-slate-700 my-1 list-disc pl-5  text-sm">
             {skills.map((skill, index) => (
               <li key={index}>{skill}</li>
             ))}
           </ul>
         )}
 
-        <p className="text-gray-500 mt-2">Investment: {ad.investment}</p>
+        <p className="text-stale-700 text-lg text-decoration-line: underline mt-2">Investment: </p>
+        <li className="list-none">{ad.investment}</li>
         <div className="border border-gray-100 mb-5"></div>
 
         <div className="flex flex-col lg:flex-row justify-between mb-4">
-          <div className="text-orange-700 mb-3">
+          <div className="text-zinc-600 mb-3">
             <FaMapMarker className="inline text-lg mb-1 mr-1" />
             {ad.location}
           </div>
 
           <Link
             to={`/ads/${ad.id}`}
-            className="h-[36px] bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg text-center text-sm"
+            className="h-[36px] bg-customBlue hover:bg-slate-600 text-white px-4 py-2 rounded-lg text-center text-sm"
           >
             Read More
           </Link>
