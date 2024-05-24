@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { getAdData, editAd } from "../services/adService"; // Make sure to import the functions
+import { getAdData, editAd } from "../services/adService"; 
 
 const EditAdPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -283,3 +283,4 @@ const EditAdPage: React.FC = () => {
 };
 
 export default EditAdPage;
+ 
