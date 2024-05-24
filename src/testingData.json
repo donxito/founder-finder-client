@@ -1,7 +1,7 @@
 {
   "ads": [
     {
-      "id": 1,
+      "id": "1",
       "posterName": "Sophie Nielsen",
       "posterInfo": {
         "name": "Sophie Nielsen",
@@ -20,7 +20,7 @@
       "description": "I want to develop an app that educates and incentivizes users to adopt sustainable lifestyle practices, such as recycling, reducing energy consumption, and supporting ethical brands. The app will feature challenges, rewards, and community engagement features. I'm seeking partners skilled in app development, sustainability, and marketing to collaborate on this project."
     },
     {
-      "id": 2,
+      "id": "2",
       "posterName": "Emil Pedersen",
       "posterInfo": {
         "name": "Emil Pedersen",
@@ -39,7 +39,7 @@
       "description": "I envision launching a food truck that offers gourmet street food with international flavors and locally sourced ingredients. The menu will feature creative dishes inspired by global cuisine, served in a convenient and accessible format. I'm seeking partners skilled in culinary arts, business management, and food safety regulations to join me in this venture."
     },
     {
-      "id": 3,
+      "id": "3",
       "posterName": "Mads Jensen",
       "posterInfo": {
         "name": "Mads Jensen",
@@ -58,7 +58,7 @@
       "description": "I want to establish a digital marketing agency that specializes in managing social media accounts for businesses across various industries. Our services will include content creation, community engagement, and performance analytics. I'm seeking partners skilled in digital marketing, social media management, and client relations to collaborate on this project."
     },
     {
-      "id": 4,
+      "id": "4",
       "posterName": "Laura Christensen",
       "posterInfo": {
         "name": "Laura Christensen",
@@ -77,7 +77,7 @@
       "description": "I want to create an online platform that connects homeowners with interior designers for virtual consultations and design services. The platform will streamline the design process, from initial concept development to product sourcing. I'm seeking partners skilled in interior design, client communication, and online platform development to collaborate on this project."
     },
     {
-      "id": 5,
+      "id": "5",
       "posterName": "Nikolaj Olsen",
       "posterInfo": {
         "name": "Nikolaj Olsen",
@@ -96,7 +96,7 @@
       "description": "I envision opening a boutique fitness studio that provides personalized training programs tailored to each client's unique needs and goals. The studio will offer a range of services, including one-on-one sessions, group classes, and nutritional guidance. I'm seeking partners skilled in fitness training, nutrition, and business management to join me in this venture."
     },
     {
-      "id": 6,
+      "id": "6",
       "posterName": "Emma Larsen",
       "posterInfo": {
         "name": "Emma Larsen",
@@ -115,7 +115,7 @@
       "description": "I want to launch an eco-friendly clothing line for children that prioritizes sustainable materials, ethical production practices, and inclusive designs. The clothing line will promote environmental stewardship and positive social impact. I'm seeking partners skilled in fashion design, sustainability, and supply chain management to collaborate on this project."
     },
     {
-      "id": 7,
+      "id": "7",
       "posterName": "Jonas Andersen",
       "posterInfo": {
         "name": "Jonas Andersen",
@@ -134,7 +134,7 @@
       "description": "I envision starting a graphic design agency that caters specifically to startups, helping them establish compelling brand identities that resonate with their target audience. Our services will include logo design, visual branding, and marketing collateral. I'm seeking partners skilled in graphic design, brand identity, and client collaboration to join me in this venture."
     },
     {
-      "id": 8,
+      "id": "8",
       "posterName": "Ida Rasmussen",
       "posterInfo": {
         "name": "Ida Rasmussen",
@@ -153,7 +153,7 @@
       "description": "I want to create an online marketplace that connects artisans and craftspeople with consumers who appreciate handmade and unique products. The platform will feature a wide range of items, from jewelry and home decor to clothing and art. I'm seeking partners skilled in web development, e-commerce, and marketing to collaborate on this project."
     },
     {
-      "id": 9,
+      "id": "9",
       "posterName": "Frederik Poulsen",
       "posterInfo": {
         "name": "Frederik Poulsen",
@@ -172,7 +172,7 @@
       "description": "I envision opening a photography studio that focuses on capturing beautiful and timeless family portraits. The studio will provide a comfortable and inviting environment for families to create lasting memories together. I'm seeking partners skilled in photography, client management, and studio management to join me in this venture."
     },
     {
-      "id": 10,
+      "id": "10",
       "posterName": "Amalie Møller",
       "posterInfo": {
         "name": "Amalie Møller",
@@ -191,7 +191,7 @@
       "description": "I want to establish a wellness retreat center that provides transformative experiences through yoga and meditation retreats. The center will offer immersive programs focused on relaxation, self-discovery, and holistic well-being. I'm seeking partners skilled in yoga instruction, event planning, and hospitality management to collaborate on this project."
     },
     {
-      "id": 11,
+      "id": "11",
       "posterName": "Mathias Christensen",
       "posterInfo": {
         "name": "Mathias Christensen",
@@ -210,7 +210,10 @@
       "description": "I envision starting a consultancy firm that specializes in advising businesses and governments on renewable energy projects. Our services will include feasibility studies, technology assessments, and project management support. I'm seeking partners skilled in renewable energy, consulting, and project management to join me in this venture."
     },
     {
-      "id": 12,
+      "businessIdea": "A meal prep service for busy individuals and lazy people",
+      "description": "I want to launch a meal prep service that provides busy individuals with nutritious and convenient meal options. Customers can customize their meal plans based on dietary preferences and portion sizes, and we'll deliver freshly prepared meals to their doorstep. I'm seeking partners skilled in culinary arts, logistics, and marketing to collaborate on this project.",
+      "investment": "No Idea",
+      "location": "Kolding",
       "posterName": "Signe Jensen",
       "posterInfo": {
         "name": "Signe Jensen",
@@ -218,16 +221,12 @@
         "email": "signe@mail.com",
         "phone": 345678
       },
-      "businessIdea": "A meal prep service for busy individuals",
-      "location": "Kolding",
-      "investment": "30.000 DKK",
       "requiredSkills": [
         "Culinary Arts",
         "Logistics",
         "Marketing"
       ],
-      "description": "I want to launch a meal prep service that provides busy individuals with nutritious and convenient meal options. Customers can customize their meal plans based on dietary preferences and portion sizes, and we'll deliver freshly prepared meals to their doorstep. I'm seeking partners skilled in culinary arts, logistics, and marketing to collaborate on this project."
+      "id": "12"
     }
-
   ]
 }

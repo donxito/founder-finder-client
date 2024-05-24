@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import  { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { getAdData, editAd } from "../services/adService"; // Make sure to import the functions
 
-type AddAdSubmitType = (adData: any) => void; // Define the type of addAdSubmit prop
-
-const AddAdPage: React.FC<{ addAdSubmit: AddAdSubmitType }> = ({ addAdSubmit }) => {
-
+const EditAdPage: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
   const [businessIdea, setBusinessIdea] = useState("");
   const [description, setDescription] = useState("");
   const [investment, setInvestment] = useState("");
@@ -18,9 +17,27 @@ const AddAdPage: React.FC<{ addAdSubmit: AddAdSubmitType }> = ({ addAdSubmit }) 
   const [requiredSkills, setRequiredSkills] = useState<string[]>([]);
   const [newSkill, setNewSkill] = useState<string>("");
 
-  const navigate  = useNavigate();
+  const navigate = useNavigate();
 
-
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const adData = await getAdData(id!);
+        setBusinessIdea(adData.businessIdea);
+        setDescription(adData.description);
+        setInvestment(adData.investment);
+        setLocation(adData.location);
+        setPosterName(adData.posterInfo.name);
+        setPosterAbout(adData.posterInfo.about);
+        setPosterEmail(adData.posterInfo.email);
+        setPosterPhone(adData.posterInfo.phone);
+        setRequiredSkills(adData.requiredSkills);
+      } catch (error) {
+        console.error("Failed to fetch ad data", error);
+      }
+    };
+    fetchData();
+  }, [id]);
 
   const handleAddSkill = () => {
     if (newSkill.trim() !== "") {
@@ -33,7 +50,7 @@ const AddAdPage: React.FC<{ addAdSubmit: AddAdSubmitType }> = ({ addAdSubmit }) 
     setRequiredSkills(requiredSkills.filter((_, i) => i !== index));
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const adData = {
       businessIdea,
@@ -45,15 +62,19 @@ const AddAdPage: React.FC<{ addAdSubmit: AddAdSubmitType }> = ({ addAdSubmit }) 
         name: posterName,
         about: posterAbout,
         email: posterEmail,
-        phone: posterPhone
+        phone: posterPhone,
       },
-      requiredSkills
+      requiredSkills,
     };
-    
-    addAdSubmit(adData);     // the services will take care of the submission
-    toast.success("Your Ad has been posted successfully");
-    navigate("/ads")
 
+    try {
+      await editAd(id!, adData);
+      toast.success("Your Ad has been updated successfully");
+      navigate("/ads");
+    } catch (error) {
+      toast.error("Failed to update ad");
+      console.error("Failed to update ad", error);
+    }
   };
 
   return (
@@ -61,7 +82,7 @@ const AddAdPage: React.FC<{ addAdSubmit: AddAdSubmitType }> = ({ addAdSubmit }) 
       <div className="container m-auto max-w-2xl py-24">
         <div className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0">
           <form onSubmit={handleSubmit}>
-            <h2 className="text-3xl text-center font-semibold mb-6">Post Ad</h2>
+            <h2 className="text-3xl text-center font-semibold mb-6">Edit Ad</h2>
 
             <div className="mb-4">
               <label className="block text-gray-700 font-bold mb-2">
@@ -251,7 +272,7 @@ const AddAdPage: React.FC<{ addAdSubmit: AddAdSubmitType }> = ({ addAdSubmit }) 
                 className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
                 type="submit"
               >
-                Add Job
+                Update Ad
               </button>
             </div>
           </form>
@@ -261,4 +282,4 @@ const AddAdPage: React.FC<{ addAdSubmit: AddAdSubmitType }> = ({ addAdSubmit }) 
   );
 };
 
-export default AddAdPage;
+export default EditAdPage;

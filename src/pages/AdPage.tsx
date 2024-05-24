@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import { FaArrowLeft, FaMapMarker } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 interface Ad {
   id: number;
@@ -20,12 +21,32 @@ interface Ad {
   };
 }
 
-const AdPage = () => {
+interface AdPageProps {
+  deleteAd: (adId: string) => void;
+}
+
+const AdPage = ({ deleteAd }: AdPageProps) => {
   const [ad, setAd] = useState<Ad | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   const { id } = useParams<{ id: string }>();
+
+  const navigate = useNavigate();
+
+  
+  const onDeleteClick = (adId: string) => {
+    const confirm = window.confirm("Are you sure you want to delete this Ad?")
+
+    if(!confirm) {
+      return
+    }
+
+    deleteAd(adId)
+    toast.success("Ad deleted successfully")
+    navigate("/ads")
+
+  }
 
   useEffect(() => {
     const fetchAd = async () => {
@@ -128,15 +149,19 @@ const AdPage = () => {
               </div>
 
               {/*<!-- Manage */}
+
               <div className="bg-white p-6 rounded-lg shadow-md mt-6">
                 <h3 className="text-xl font-bold mb-6">Manage Ad</h3>
-                <a
-                  href="/add-job.html"
+                <Link
+                  to={`/edit-ad/${ad?.id}`}
                   className="bg-indigo-500 hover:bg-indigo-600 text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
                 >
                   Edit Ad
-                </a>
-                <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block">
+                </Link>
+
+                <button 
+                onClick={() => onDeleteClick(ad?.id?.toString() ?? "")}
+                className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block">
                   Delete Ad
                 </button>
               </div>
