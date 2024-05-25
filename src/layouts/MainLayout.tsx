@@ -9,7 +9,7 @@ const Mainlayout = () => {
     <>
     <Navbar/>
     <Outlet/> {/* Render the child route components defined in the router configuration */}
-    <ToastContainer />
+    <ToastContainer /> {/*  */}
     </>
   )
 }
