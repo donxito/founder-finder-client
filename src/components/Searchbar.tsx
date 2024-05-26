@@ -12,14 +12,17 @@ interface Ad {
 }
 
 const Searchbar = () => {
+
   const [searchQuery, setSearchQuery] = useState("");
   const [ads, setAds] = useState<Ad[]>([]);
   const [filteredAds, setFilteredAds] = useState<Ad[]>([]);
   const [loading, setLoading] = useState(false);
   const [noResults, setNoResults] = useState(false);
-  const [category, setCategory] = useState("All categories");
+  const [category, setCategory] = useState("Choose a category");
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const debounceTimeout = useRef<number | null>(null);
+
+  const debounceTimeout = useRef<number | null>(null); // store a mutable value that persists across renders.
+  const dropdownRef = useRef<HTMLDivElement>(null) // create a reference to a DOM element (div) 
 
   // Fetch ads data when the component mounts
   useEffect(() => {
@@ -47,41 +50,66 @@ const Searchbar = () => {
 
     // Set a new timeout to debounce the search
     debounceTimeout.current = window.setTimeout(() => {
-      const filtered = ads.filter((ad) => {
-        // Filter based on category and query
-        const searchInCategory =
-          category === "Location"
-            ? ad.location.toLowerCase().includes(query.toLowerCase())
-            : category === "Business Idea"
-            ? ad.businessIdea.toLowerCase().includes(query.toLowerCase())
-            : ad.businessIdea.toLowerCase().includes(query.toLowerCase()) ||
-              ad.location.toLowerCase().includes(query.toLowerCase());
+      // search after typing 3 characters
+      if (query.length >= 3) {
+        const filtered = ads.filter((ad) => {
+          // Filter based on category and query
+          if (category === "Location") {
+            return ad.location.toLowerCase().includes(query.toLowerCase());
+          } else if (category === "Business Idea") {
+            return ad.businessIdea.toLowerCase().includes(query.toLowerCase());
+          } else {
+            return false
+          }
+        });
 
-        return searchInCategory || ad.description.toLowerCase().includes(query.toLowerCase());
-      });
-
-      setFilteredAds(filtered);
-      setNoResults(filtered.length === 0);
+        setFilteredAds(filtered);
+        setNoResults(filtered.length === 0);
+      } else {
+        setFilteredAds([]);
+        setNoResults(false);
+      }
     }, 300);
   };
 
-  // Clear search query and results
-  const clearSearch = () => {
-    setSearchQuery("");
-    setFilteredAds([]);
-    setNoResults(false);
+// Clear search query and results
+const clearSearch = () => {
+  setSearchQuery("");
+  setFilteredAds([]);
+  setNoResults(false);
+};
+
+const handleCategorySelect = (category: string) => {
+  setCategory(category);
+  setDropdownOpen(false);
+};
+
+
+ // Close dropdown when clicking outside
+ useEffect(() => {
+  const handleClickOutside = (event: MouseEvent) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      setDropdownOpen(false);
+    }
   };
 
+  document.addEventListener("mousedown", handleClickOutside);
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, []);
+
+
   return (
-    <form className="max-w-lg mx-auto py-20 my-20">
+    <form className="max-w-3xl mx-auto py-10 my-10">
       <div className="flex">
         {/* Category Dropdown */}
-        <label htmlFor="search-dropdown" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
+        <label htmlFor="search-dropdown" className="mb-2 text-sm font-medium text-slate-700 sr-only">
           Search
         </label>
         <button
           id="dropdown-button"
-          className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
+          className="flex-shrink-0 z-10 inline-flex items-center py-3 px-6 text-sm font-medium text-center text-slate-700 bg-zinc-300 border border-zinc-200 rounded-s-lg hover:bg-zinc-200 focus:ring-4 focus:outline-none focus:ring-zinc-200"
           type="button"
           onClick={() => setDropdownOpen(!dropdownOpen)}
         >
@@ -105,28 +133,22 @@ const Searchbar = () => {
 
         {/* Dropdown Menu */}
         {dropdownOpen && (
-          <div className="absolute bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-            <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
+          <div className="absolute bg-slate-700 divide-y divide-gray-100 rounded-lg shadow w-44 ">
+            <ul className="py-2 text-sm text-zinc-300">
               <li>
                 <button
                   type="button"
-                  className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  onClick={() => {
-                    setCategory("All categories");
-                    setDropdownOpen(false);
-                  }}
+                  className="inline-flex w-full px-4 py-2 hover:bg-gray-600 hover:text-white"
+                  onClick={() => handleCategorySelect("Choose a category")}
                 >
-                  All categories
+                  Categories
                 </button>
               </li>
               <li>
                 <button
                   type="button"
-                  className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  onClick={() => {
-                    setCategory("Location");
-                    setDropdownOpen(false);
-                  }}
+                  className="inline-flex w-full px-4 pt-8 pb-2 hover:bg-gray-600 hover:text-white"
+                  onClick={() => handleCategorySelect("Location")}
                 >
                   Location
                 </button>
@@ -134,11 +156,8 @@ const Searchbar = () => {
               <li>
                 <button
                   type="button"
-                  className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  onClick={() => {
-                    setCategory("Business Idea");
-                    setDropdownOpen(false);
-                  }}
+                  className="inline-flex w-full px-4 py-2 hover:bg-gray-600 hover:text-white"
+                  onClick={() => handleCategorySelect("Business Idea")}
                 >
                   Business Idea
                 </button>
@@ -154,8 +173,9 @@ const Searchbar = () => {
             id="search-dropdown"
             value={searchQuery}
             onChange={handleSearch}
-            className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
-            placeholder="Search by category..."
+            className="block p-4 w-full z-20 text-lg text-slate-700 bg-zinc-300 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-customCyan focus:border-customCyan"
+            placeholder="Search by location or business idea"
+            disabled={category === "Choose a category"}
             required
           />
 
@@ -164,7 +184,7 @@ const Searchbar = () => {
             <button
               type="button"
               onClick={clearSearch}
-              className="absolute inset-y-0 right-16 flex items-center pr-3 text-zinc-300"
+              className="absolute inset-y-0 right-16 flex items-center pr-3 text-slate-700"
             >
               Clear
             </button>
@@ -174,7 +194,8 @@ const Searchbar = () => {
           <button
             type="submit"
             onClick={(e) => e.preventDefault()}
-            className="absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="absolute top-0 right-0 p-4 text-lg font-medium h-full text-white bg-customBlue rounded-e-lg border border-customBlue hover:bg-secondCyan focus:ring-4 focus:outline-none focus:ring-customCyan"
+            disabled={category === "Choose a category"}
           >
             <svg
               className="w-4 h-4"
@@ -207,7 +228,7 @@ const Searchbar = () => {
             ) : (
               filteredAds.map((ad) => (
                 <Link to={`/ads/${ad.id}`} key={ad.id}>
-                  <li className="my-4 text-sm font-bold text-secondCyan hover:text-customCyan">
+                  <li className="my-4 text-lg font-bold text-zinc-300 hover:text-zinc-100">
                     {ad.businessIdea}
                   </li>
                 </Link>
