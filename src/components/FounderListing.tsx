@@ -57,7 +57,7 @@ const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
         {/* Button to toggle full description */}
         <button
           onClick={handleClick}
-          className="text-secondCyan mb-5 hover:text-customCyan"
+          className="text-customCyan mb-5 hover:text-secondCyan"
         >
           {showFullDescription ? "Less" : "More"}
         </button>
@@ -65,7 +65,7 @@ const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
 
         {/* Button to toggle skills list */}
         <button
-          className="text-secondCyan hover:text-customCyan mb-4 font-medium"
+          className="text-customCyan hover:text-secondCyan mb-4 font-medium"
           onClick={handleShowSkills}
         >
           Must Have Skills

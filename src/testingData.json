@@ -227,6 +227,38 @@
         "Marketing"
       ],
       "id": "12"
+    },
+    {
+      "id": "8760",
+      "businessIdea": "TEST 1",
+      "description": "testing",
+      "investment": "No Idea",
+      "location": "Copenhagen",
+      "posterName": "",
+      "posterInfo": {
+        "name": "",
+        "about": "",
+        "email": "mail@movf",
+        "phone": ""
+      },
+      "requiredSkills": []
+    },
+    {
+      "businessIdea": "test 2",
+      "description": "ppopopopop",
+      "investment": "60.000 DKK - 70.000 DKK",
+      "location": "Kolding",
+      "posterName": "",
+      "posterInfo": {
+        "name": "",
+        "about": "",
+        "email": "mo@mo",
+        "phone": ""
+      },
+      "requiredSkills": [
+        "WQF"
+      ],
+      "id": "7f02"
     }
   ]
 }

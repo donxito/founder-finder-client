@@ -8,7 +8,7 @@ const ViewAllAds = () => {
         to="/ads"
         className="block bg-customBlue text-white text-center py-4 px-6 rounded-xl hover:bg-slate-600"
         >
-            View All Ads
+            Browse Ads
         </Link>
 
     </section>

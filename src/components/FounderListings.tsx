@@ -7,33 +7,49 @@ interface Props {
 }
 
 const FounderListings: React.FC<Props> = ({ isHome = false }) => {
+  
   const [ads, setAds] = useState<Ad[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchAds = async () => {
-      const apiUrl = isHome 
-        ? "/api/ads?_limit=3" 
-        : "/api/ads";
-  
+      const apiUrl = "/api/ads"; // Fetch all ads
+
+      console.log("API URL:", apiUrl); // Log apiUrl
+
       try {
         const res = await fetch(apiUrl);
-        
+
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
+
+        let data: Ad[] = await res.json();
+        console.log("Fetched ads:", data);
+
+        // if (isHome && Array.isArray(data)) {
+        //   // Check if data is an array
+        //   setAds(data.slice(-3)); // Set the last 3 ads
+        // } else {
+        //   setAds(data); // Set all ads
+        // }
   
-        const data = await res.json();
+
+        if (isHome) {
+          data = data.slice(-3); // Get the last 3 ads
+        }
+
         setAds(data);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching data:", error); // Log fetch errors
       } finally {
         setLoading(false);
       }
     };
-  
+
     fetchAds();
   }, [isHome]);
+
   
 
   return (

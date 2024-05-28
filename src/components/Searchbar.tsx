@@ -174,7 +174,7 @@ const handleCategorySelect = (category: string) => {
             value={searchQuery}
             onChange={handleSearch}
             className="block p-4 w-full z-20 text-lg text-slate-700 bg-zinc-300 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-customCyan focus:border-customCyan"
-            placeholder="Search by location or business idea"
+            placeholder="Search by location or business keywords"
             disabled={category === "Choose a category"}
             required
           />
