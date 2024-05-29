@@ -4,7 +4,8 @@ import adService from "../services/adService";
 
 
 interface Ad {
-  id: number;
+  _id: string;
+  id: string;
   posterName: string;
   businessIdea: string;
   description: string;
@@ -73,7 +74,7 @@ const Searchbar = () => {
           }
         });
 
-        setFilteredAds(filtered);
+        setFilteredAds(filtered.map(ad => ({ ...ad, id: ad._id })));
         setNoResults(filtered.length === 0);
       } else {
         setFilteredAds([]);

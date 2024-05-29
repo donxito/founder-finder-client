@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 
 // Define the structure of an individual founder ad
 export interface Ad {
-  id: number;
+  _id: string;
+  id: string;
   posterName: string;
   businessIdea: string;
   description: string;
@@ -90,7 +91,7 @@ const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
           </div>
 
           <Link
-            to={`/ads/${ad.id}`}
+            to={`/ads/${ad?.id}`}
             className="h-[36px] bg-customBlue hover:bg-slate-600 text-white px-4 py-2 rounded-lg text-center text-sm"
           >
             Read More

@@ -21,13 +21,23 @@ const FounderListings: React.FC<Props> = ({ isHome = false }) => {
           response = await adService.getAllAds();
           const allAds = response.data;
           if (Array.isArray(allAds)) {
-            setAds(allAds.slice(-3));
+            
+            const adsWithId = allAds.map((ad: Ad) => ({
+              ...ad,
+              id: ad._id // Map _id to id
+            }));
+            setAds(adsWithId.slice(-3));
           } else {
             setAds([]);
           }
         } else {
           response = await adService.getAllAds();
-          setAds(response.data);
+          // Assuming _id is present in each ad object
+          const adsWithId = response.data.map((ad: Ad) => ({
+            ...ad,
+            id: ad._id // Map _id to id
+          }));
+          setAds(adsWithId);
         }
       } catch (error) {
         console.error("Error fetching data:", error); // Log fetch errors
@@ -35,7 +45,7 @@ const FounderListings: React.FC<Props> = ({ isHome = false }) => {
         setLoading(false);
       }
     };
-
+  
     fetchAds();
   }, [isHome]);
 
