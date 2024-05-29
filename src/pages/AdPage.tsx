@@ -18,11 +18,9 @@ interface Ad {
     name: string;
     about: string;
     email: string;
-    phone: number;
+    phoneNumber: string;
   };
 }
-
-
 
 const AdPage = () => {
   const [ad, setAd] = useState<Ad | null>(null);
@@ -30,16 +28,22 @@ const AdPage = () => {
   const [error, setError] = useState<string | null>(null);
 
   const { id } = useParams<{ id: string }>();
+
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchAd = async () => {
       try {
+        if (!id) {
+          // Handle case where ID is not available
+          throw new Error("Ad ID is not available");
+        }
+
         const response = await adService.getAd(id ?? '');
         console.log(response); // Verify the fetched data
-  
+
         const adData = response.data;
-  
+
         // Transform the data to match the Ad interface
         const transformedAd: Ad = {
           id: adData.id,
@@ -50,13 +54,13 @@ const AdPage = () => {
           requiredSkills: adData.requiredSkills,
           description: adData.description,
           posterInfo: {
-            name: adData.User.name,
-            about: adData.User.about ?? "",
-            email: adData.User.email,
-            phone: adData.User.phone ?? 0,
+            name: adData.author.name, 
+            about: adData.author.about ?? "",
+            email: adData.author.email,
+            phoneNumber: adData.author.phoneNumber ?? 0,
           },
         };
-  
+
         setAd(transformedAd);
       } catch (error) {
         setError("Failed to fetch ad");
@@ -65,17 +69,17 @@ const AdPage = () => {
         setLoading(false);
       }
     };
+
     fetchAd();
   }, [id]);
-  
 
   const onDeleteClick = async (adId: string) => {
     const confirm = window.confirm("Are you sure you want to delete this Ad?");
-  
+
     if (!confirm) {
       return;
     }
-  
+
     try {
       await adService.deleteAd(adId);
       toast.success("Ad deleted successfully");
@@ -85,7 +89,6 @@ const AdPage = () => {
       toast.error("Failed to delete ad");
     }
   };
-  
 
   return loading ? (
     <Spinner loading={loading} />
@@ -145,22 +148,24 @@ const AdPage = () => {
                   About me
                 </h3>
 
-                <h2 className="text-2xl text-zinc-500">{ad?.posterInfo.name}</h2>
+                <h2 className="text-2xl text-zinc-500">
+                  {ad?.posterInfo?.name}
+                </h2>
 
-                <p className="my-2">{ad?.posterInfo.about}</p>
+                <p className="my-2">{ad?.posterInfo?.about}</p>
 
                 <hr className="my-4" />
 
                 <h3 className="text-xl">Contact Email:</h3>
 
                 <p className="my-2 bg-zinc-200 p-2 font-bold text-gray-600">
-                  {ad?.posterInfo.email}
+                  {ad?.posterInfo?.email}
                 </p>
 
                 <h3 className="text-xl">Contact Phone:</h3>
 
                 <p className="my-2 bg-zinc-200 p-2 font-bold text-gray-600">
-                  {ad?.posterInfo.phone}
+                  {ad?.posterInfo?.phoneNumber}
                 </p>
               </div>
 
