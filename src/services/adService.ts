@@ -1,50 +1,73 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import axios, { AxiosInstance } from "axios";
+
+type AdRequestBody = {
+  businessIdea: string;
+  description: string;
+  investment: string;
+  location: string;
+  posterName: string;
+  posterInfo: {
+    name: string;
+    about: string;
+    email: string;
+    phone: number;
+  };
+  requiredSkills: string[]; 
+};
 
 
-// Add new ad
-const addAd =  async (newAd: object) => {
-    console.log("Form submitted with ad data:", newAd);
-    const res = await fetch("/api/ads", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newAd),
+class AdService {
+  api: AxiosInstance;
+
+  constructor() {
+    this.api = axios.create({
+      baseURL: import.meta.env.VITE_API_URL,
     });
-    return
+
+    this.api.interceptors.request.use((config) => {
+      const storedToken = localStorage.getItem("authToken");
+
+      if (storedToken) {
+        config.headers = config.headers || {};
+        config.headers.Authorization = `Bearer ${storedToken}`;
+      }
+      return config;
+    });
+  }
+
+  // POST /ads
+  createAd = (requestBody: AdRequestBody) => {
+    return  this.api.post("/ads", requestBody);
+  };
+
+  // GET /ads
+  getAllAds = () => {
+    return  this.api.get("/ads");
+  };
+
+  // GET /ads/:adId
+  getAd = (adId: string) => {
+    return  this.api.get(`/ads/${adId}`);
+  };
+
+  // PUT /ads/:adId
+  updateAd = (adId: string, requestBody: AdRequestBody) => {
+    return  this.api.put(`/ads/${adId}`, requestBody);
+  };
+
+  // DELETE /ads/:adId
+  deleteAd = (adId: string) => {
+    return  this.api.delete(`/ads/${adId}`);
+  };
+
+  // GET/users/ads/:userId
+  getUserAds = (userId: string) => {
+    return  this.api.get(`/users/${userId}/ads`);
+  };
+
 }
 
-// Delete Ad
+const adService = new AdService();
 
-const deleteAd = async (id: string) => {
-    console.log("Ad deleted", id );
-    const res = await fetch(`/api/ads/${id}`, {
-        method: "DELETE",
-    });
-}
-
-// Fetch ad data by ID
-const getAdData = async (id: string) => {
-    const res = await fetch(`/api/ads/${id}`);
-    if (!res.ok) {
-      throw new Error("Failed to fetch ad data");
-    }
-    return res.json();
-  }
-  
-  // Edit ad by ID
-  const editAd = async (id: string, updatedAd: object) => {
-    const res = await fetch(`/api/ads/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updatedAd),
-    });
-    if (!res.ok) {
-      throw new Error("Failed to update ad");
-    }
-  }
-  
-
-export {addAd, deleteAd, getAdData, editAd};
+export default adService;

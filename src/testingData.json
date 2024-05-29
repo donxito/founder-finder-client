@@ -242,38 +242,6 @@
         "phone": ""
       },
       "requiredSkills": []
-    },
-    {
-      "businessIdea": "test 2",
-      "description": "ppopopopop",
-      "investment": "60.000 DKK - 70.000 DKK",
-      "location": "Kolding",
-      "posterName": "",
-      "posterInfo": {
-        "name": "",
-        "about": "",
-        "email": "mo@mo",
-        "phone": ""
-      },
-      "requiredSkills": [
-        "WQF"
-      ],
-      "id": "7f02"
-    },
-    {
-      "id": "3920",
-      "businessIdea": "teste 3",
-      "description": "dqf",
-      "investment": "10.000 DKK - 20.000 DKK",
-      "location": "Copenhagen",
-      "posterName": "",
-      "posterInfo": {
-        "name": "",
-        "about": "",
-        "email": "mo@mo",
-        "phone": ""
-      },
-      "requiredSkills": []
     }
   ]
 }

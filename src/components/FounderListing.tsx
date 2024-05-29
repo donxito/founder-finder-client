@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaMapMarker } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -72,9 +72,9 @@ const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
         </button>
         {/* Display skills list if showSkills is true */}
         {showSkills && (
-          <ul className="text-slate-700 my-1 list-disc pl-5  text-sm">
+          <ul className="text-slate-700 my-1 list-disc pl-5 text-sm">
             {skills.map((skill, index) => (
-              <li key={index}>{skill}</li>
+              <li key={index}>{skill}</li> // Ensure each skill has a unique key
             ))}
           </ul>
         )}

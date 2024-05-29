@@ -2,7 +2,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { getAdData, editAd } from "../services/adService";
+import adService from "../services/adService";
+
+
 
 const EditAdPage: React.FC = () => {
   const { id } = useParams<{ id: string }>(); // Get the ad ID from the URL
@@ -23,8 +25,12 @@ const EditAdPage: React.FC = () => {
   // useEffect hook to fetch ad data when the component mounts
   useEffect(() => {
     const fetchData = async () => {
+      
       try {
-        const adData = await getAdData(id!); // Fetch ad data using the ID
+
+        const response = await adService.getAd(id!);
+        const adData = response.data;
+
         // Populate the state variables with the fetched ad data
         setBusinessIdea(adData.businessIdea);
         setDescription(adData.description);
@@ -68,14 +74,15 @@ const EditAdPage: React.FC = () => {
         name: posterName,
         about: posterAbout,
         email: posterEmail,
-        phone: posterPhone,
+        phone: parseInt(posterPhone), // Convert phone to a number
       },
       requiredSkills,
     };
+    
 
     try {
       // Update the ad with the new data
-      await editAd(id!, adData);
+      await adService.updateAd(id!, adData)
       toast.success("Your Ad has been updated successfully");
       navigate(`/ads/${id}`);
     } catch (error) {

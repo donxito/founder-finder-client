@@ -1,11 +1,29 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import  { useState } from "react";
+import { useState,  FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import adService from "../services/adService";
 
-type AddAdSubmitType = (adData: any) => void; // Define the type of addAdSubmit prop
 
-const AddAdPage: React.FC<{ addAdSubmit: AddAdSubmitType }> = ({ addAdSubmit }) => {
+
+interface PosterInfo {
+  name: string;
+  about: string;
+  email: string;
+  phone: number;
+}
+
+interface AdRequestBody {
+  businessIdea: string;
+  description: string;
+  investment: string;
+  location: string;
+  posterName: string;
+  posterInfo: PosterInfo;
+  requiredSkills: string[];
+}
+
+
+const AddAdPage = () => {
 
   const [businessIdea, setBusinessIdea] = useState("");
   const [description, setDescription] = useState("");
@@ -14,7 +32,7 @@ const AddAdPage: React.FC<{ addAdSubmit: AddAdSubmitType }> = ({ addAdSubmit }) 
   const [posterName, setPosterName] = useState("");
   const [posterAbout, setPosterAbout] = useState("");
   const [posterEmail, setPosterEmail] = useState("");
-  const [posterPhone, setPosterPhone] = useState("");
+  const [posterPhone, setPosterPhone] = useState<number>(0);
   const [requiredSkills, setRequiredSkills] = useState<string[]>([]);
   const [newSkill, setNewSkill] = useState<string>("");
 
@@ -30,31 +48,41 @@ const AddAdPage: React.FC<{ addAdSubmit: AddAdSubmitType }> = ({ addAdSubmit }) 
   };
 
   const handleRemoveSkill = (index: number) => {
-    setRequiredSkills(requiredSkills.filter((_, i) => i !== index));
+    setRequiredSkills((prevSkills) =>
+      prevSkills.filter((_, i) => i !== index)
+    );
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    const adData = {
+    const requestBody: AdRequestBody = {
       businessIdea,
       description,
       investment,
       location,
       posterName,
+      requiredSkills,
       posterInfo: {
         name: posterName,
         about: posterAbout,
         email: posterEmail,
-        phone: posterPhone
-      },
-      requiredSkills
+        phone: posterPhone,
+      }
     };
-    
-    addAdSubmit(adData);     // the services will take care of the submission
-    toast.success("Your Ad has been posted successfully");
-    navigate("/ads")
-
+  
+    try {
+      await adService.createAd(requestBody );
+      toast.success("Your Ad has been created successfully");
+      navigate("/ads");
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message);
+      } else {
+        toast.error("An unexpected error occurred");
+      }
+    }
   };
+
 
   return (
     <section className="bg-zinc-100">
@@ -242,7 +270,7 @@ const AddAdPage: React.FC<{ addAdSubmit: AddAdSubmitType }> = ({ addAdSubmit }) 
                 className="border rounded w-full py-2 px-3"
                 placeholder="Optional phone number"
                 value={posterPhone}
-                onChange={(e) => setPosterPhone(e.target.value)}
+                onChange={(e) => setPosterPhone(parseInt(e.target.value, 10))}// Convert the string value to a number using parseInt
               />
             </div>
 

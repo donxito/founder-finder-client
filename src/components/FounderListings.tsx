@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import FounderListing, { Ad } from "./FounderListing";
 import Spinner from "./Spinner";
+import adService from "../services/adService";
 
 interface Props {
   isHome?: boolean;
@@ -13,33 +14,21 @@ const FounderListings: React.FC<Props> = ({ isHome = false }) => {
 
   useEffect(() => {
     const fetchAds = async () => {
-      const apiUrl = "/api/ads"; // Fetch all ads
-
-      console.log("API URL:", apiUrl); // Log apiUrl
-
       try {
-        const res = await fetch(apiUrl);
-
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
-
-        let data: Ad[] = await res.json();
-        console.log("Fetched ads:", data);
-
-        // if (isHome && Array.isArray(data)) {
-        //   // Check if data is an array
-        //   setAds(data.slice(-3)); // Set the last 3 ads
-        // } else {
-        //   setAds(data); // Set all ads
-        // }
-  
-
+        setLoading(true);
+        let response;
         if (isHome) {
-          data = data.slice(-3); // Get the last 3 ads
+          response = await adService.getAllAds();
+          const allAds = response.data;
+          if (Array.isArray(allAds)) {
+            setAds(allAds.slice(-3));
+          } else {
+            setAds([]);
+          }
+        } else {
+          response = await adService.getAllAds();
+          setAds(response.data);
         }
-
-        setAds(data);
       } catch (error) {
         console.error("Error fetching data:", error); // Log fetch errors
       } finally {
@@ -49,8 +38,6 @@ const FounderListings: React.FC<Props> = ({ isHome = false }) => {
 
     fetchAds();
   }, [isHome]);
-
-  
 
   return (
     <section className="bg-zinc-100 px-4 py-10">

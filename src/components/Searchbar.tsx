@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import adService from "../services/adService";
+
 
 interface Ad {
   id: number;
@@ -8,8 +10,9 @@ interface Ad {
   description: string;
   location: string;
   investment: string;
-  requiredSkills: Array<string>;
+  requiredSkills: string[];
 }
+
 
 const Searchbar = () => {
 
@@ -22,7 +25,9 @@ const Searchbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const debounceTimeout = useRef<number | null>(null); // store a mutable value that persists across renders.
-  const dropdownRef = useRef<HTMLDivElement>(null) // create a reference to a DOM element (div) 
+  const dropdownRef = useRef<HTMLDivElement>(null); // create a reference to a DOM element (div) 
+
+
 
   // Fetch ads data when the component mounts
   useEffect(() => {
@@ -32,12 +37,17 @@ const Searchbar = () => {
   // Fetch data from the API
   const fetchData = async () => {
     setLoading(true);
-    const response = await fetch("/api/ads");
-    const data = await response.json();
-    setAds(data as Ad[]);
-    setLoading(false);
+    try {
+      const response = await adService.getAllAds();
+      const data = response.data;
+      setAds(data);
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+      setLoading(false);
+    }
   };
-
+  
   // Handle search input changes
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const query = event.target.value;

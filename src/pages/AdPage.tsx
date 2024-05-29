@@ -4,9 +4,10 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import { FaArrowLeft, FaMapMarker } from "react-icons/fa";
 import { toast } from "react-toastify";
+import adService from "../services/adService";
 
 interface Ad {
-  id: number;
+  id: string;
   posterName: string;
   businessIdea: string;
   location: string;
@@ -21,44 +22,44 @@ interface Ad {
   };
 }
 
-interface AdPageProps {
-  deleteAd: (adId: string) => void;
-}
 
-const AdPage = ({ deleteAd }: AdPageProps) => {
+
+const AdPage = () => {
   const [ad, setAd] = useState<Ad | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   const { id } = useParams<{ id: string }>();
-
   const navigate = useNavigate();
-
-  
-  const onDeleteClick = (adId: string) => {
-    const confirm = window.confirm("Are you sure you want to delete this Ad?")
-
-    if(!confirm) {
-      return
-    }
-
-    deleteAd(adId)
-    toast.success("Ad deleted successfully")
-    navigate("/ads")
-
-  }
 
   useEffect(() => {
     const fetchAd = async () => {
       try {
-        const res = await fetch(`/api/ads/${id}`);
-        if (!res.ok) {
-          throw new Error("Failed to fetch ad");
-        }
-        const data = await res.json();
-        console.log(data);
-        setAd(data);
+        const response = await adService.getAd(id ?? '');
+        console.log(response); // Verify the fetched data
+  
+        const adData = response.data;
+  
+        // Transform the data to match the Ad interface
+        const transformedAd: Ad = {
+          id: adData.id,
+          posterName: adData.posterName,
+          businessIdea: adData.businessIdea,
+          location: adData.location,
+          investment: adData.investment,
+          requiredSkills: adData.requiredSkills,
+          description: adData.description,
+          posterInfo: {
+            name: adData.User.name,
+            about: adData.User.about ?? "",
+            email: adData.User.email,
+            phone: adData.User.phone ?? 0,
+          },
+        };
+  
+        setAd(transformedAd);
       } catch (error) {
+        setError("Failed to fetch ad");
         console.error("Error fetching data:", error);
       } finally {
         setLoading(false);
@@ -66,6 +67,25 @@ const AdPage = ({ deleteAd }: AdPageProps) => {
     };
     fetchAd();
   }, [id]);
+  
+
+  const onDeleteClick = async (adId: string) => {
+    const confirm = window.confirm("Are you sure you want to delete this Ad?");
+  
+    if (!confirm) {
+      return;
+    }
+  
+    try {
+      await adService.deleteAd(adId);
+      toast.success("Ad deleted successfully");
+      navigate("/ads");
+    } catch (error) {
+      console.error("Error deleting ad:", error);
+      toast.error("Failed to delete ad");
+    }
+  };
+  
 
   return loading ? (
     <Spinner loading={loading} />
@@ -82,10 +102,9 @@ const AdPage = ({ deleteAd }: AdPageProps) => {
         </div>
       </section>
 
-
       <section className="bg-zinc-100">
         <div className="container m-auto py-10 px-6">
-             {/* grid layout with two columns on larger screens  */} 
+          {/* grid layout with two columns on larger screens  */}
           <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-6">
             <main>
               <div className="bg-white p-6 rounded-lg shadow-md text-center md:text-left">
@@ -108,23 +127,23 @@ const AdPage = ({ deleteAd }: AdPageProps) => {
                 </h3>
                 <p className="mb-4">{ad?.investment}</p>
 
-
                 <h4 className="text-customBlue text-lg font-semibold mb-2">
                   Must Have Skills
                 </h4>
 
-                <p className="mb-4">{ad?.requiredSkills.map((skill, index) => {
-                  return <li key={index}>{skill}</li>
-                })}</p>
-
+                <ul className="mb-4">
+                  {ad?.requiredSkills.map((skill, index) => (
+                    <li key={index}>{skill}</li>
+                  ))}
+                </ul>
               </div>
             </main>
-
-
-              {/*<!-- sidebar */} {/*<!-- Poster Info */}   
+            {/*<!-- sidebar */} {/*<!-- Poster Info */}
             <aside>
               <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-bold mb-6 text-customBlue">About me</h3>
+                <h3 className="text-xl font-bold mb-6 text-customBlue">
+                  About me
+                </h3>
 
                 <h2 className="text-2xl text-zinc-500">{ad?.posterInfo.name}</h2>
 
@@ -148,7 +167,9 @@ const AdPage = ({ deleteAd }: AdPageProps) => {
               {/*<!-- Manage */}
 
               <div className="bg-white p-6 rounded-lg shadow-md mt-6">
-                <h3 className="text-xl font-bold mb-6 text-customBlue">Manage Ad</h3>
+                <h3 className="text-xl font-bold mb-6 text-customBlue">
+                  Manage Ad
+                </h3>
                 <Link
                   to={`/edit-ad/${ad?.id}`}
                   className="bg-secondCyan hover:bg-customCyan text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
@@ -156,9 +177,10 @@ const AdPage = ({ deleteAd }: AdPageProps) => {
                   Edit Ad
                 </Link>
 
-                <button 
-                onClick={() => onDeleteClick(ad?.id?.toString() ?? "")}
-                className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block">
+                <button
+                  onClick={() => onDeleteClick(ad?.id ?? "")}
+                  className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
+                >
                   Delete Ad
                 </button>
               </div>
