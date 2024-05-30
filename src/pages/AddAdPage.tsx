@@ -1,9 +1,8 @@
-import { useState,  FormEvent } from "react";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { useState, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import adService from "../services/adService";
-
-
 
 interface PosterInfo {
   name: string;
@@ -22,9 +21,7 @@ interface AdRequestBody {
   requiredSkills: string[];
 }
 
-
 const AddAdPage = () => {
-
   const [businessIdea, setBusinessIdea] = useState("");
   const [description, setDescription] = useState("");
   const [investment, setInvestment] = useState("");
@@ -36,9 +33,7 @@ const AddAdPage = () => {
   const [requiredSkills, setRequiredSkills] = useState<string[]>([]);
   const [newSkill, setNewSkill] = useState<string>("");
 
-  const navigate  = useNavigate();
-
-
+  const navigate = useNavigate();
 
   const handleAddSkill = () => {
     if (newSkill.trim() !== "") {
@@ -48,9 +43,7 @@ const AddAdPage = () => {
   };
 
   const handleRemoveSkill = (index: number) => {
-    setRequiredSkills((prevSkills) =>
-      prevSkills.filter((_, i) => i !== index)
-    );
+    setRequiredSkills((prevSkills) => prevSkills.filter((_, i) => i !== index));
   };
 
   const handleSubmit = async (event: FormEvent) => {
@@ -67,11 +60,11 @@ const AddAdPage = () => {
         about: posterAbout,
         email: posterEmail,
         phone: posterPhone,
-      }
+      },
     };
-  
+
     try {
-      await adService.createAd(requestBody );
+      await adService.createAd(requestBody);
       toast.success("Your Ad has been created successfully");
       navigate("/ads");
     } catch (error) {
@@ -82,7 +75,6 @@ const AddAdPage = () => {
       }
     }
   };
-
 
   return (
     <section className="bg-zinc-100">
@@ -126,7 +118,10 @@ const AddAdPage = () => {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="type" className="block text-gray-700 font-bold mb-2">
+              <label
+                htmlFor="type"
+                className="block text-gray-700 font-bold mb-2"
+              >
                 Initial Investment
               </label>
               <select
@@ -137,24 +132,17 @@ const AddAdPage = () => {
                 onChange={(e) => setInvestment(e.target.value)}
                 required
               >
-                <option value="">Select Investment</option>
-                <option value="No Idea">No Idea</option>
-                <option value="Under 10.000 DKK">Under 10.000 DKK</option>
-                <option value="10.000 DKK - 20.000 DKK">10.000 DKK - 20.000 DKK</option>
-                <option value="20.000 DKK - 30.000 DKK">20.000 DKK - 30.000 DKK</option>
-                <option value="30.000 DKK - 40.000 DKK">30.000 DKK - 40.000 DKK</option>
-                <option value="40.000 DKK - 50.000 DKK">40.000 DKK - 50.000 DKK</option>
-                <option value="50.000 DKK - 60.000 DKK">50.000 DKK - 60.000 DKK</option>
-                <option value="60.000 DKK - 70.000 DKK">60.000 DKK - 70.000 DKK</option>
-                <option value="70.000 DKK - 80.000 DKK">70.000 DKK - 80.000 DKK</option>
-                <option value="80.000 DKK - 90.000 DKK">80.000 DKK - 90.000 DKK</option>
-                <option value="90.000 DKK - 100.000 DKK">90.000 DKK - 100.000 DKK</option>
-                <option value="Over 100.000 DKK">Over 100.000 DKK</option>
+                <option value="">Select an investment range</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
               </select>
             </div>
 
             <div className="mb-4">
-              <label className="block text-gray-700 font-bold mb-2">Location</label>
+              <label className="block text-gray-700 font-bold mb-2">
+                Location
+              </label>
               <input
                 type="text"
                 id="location"
@@ -168,7 +156,9 @@ const AddAdPage = () => {
             </div>
 
             <div className="mb-4">
-              <label className="block text-gray-700 font-bold mb-2">Must Have Skills</label>
+              <label className="block text-gray-700 font-bold mb-2">
+                Must Have Skills
+              </label>
               <div className="flex">
                 <input
                   type="text"
@@ -179,6 +169,9 @@ const AddAdPage = () => {
                   value={newSkill}
                   onChange={(e) => setNewSkill(e.target.value)}
                 />
+
+                {/* Manage */}
+
                 <button
                   type="button"
                   onClick={handleAddSkill}
@@ -189,7 +182,10 @@ const AddAdPage = () => {
               </div>
               <ul>
                 {requiredSkills.map((skill, index) => (
-                  <li key={index} className="flex justify-between items-center mt-2">
+                  <li
+                    key={index}
+                    className="flex justify-between items-center mt-2"
+                  >
                     {skill}
                     <button
                       type="button"
@@ -201,77 +197,6 @@ const AddAdPage = () => {
                   </li>
                 ))}
               </ul>
-            </div>
-
-            <h3 className="text-2xl mb-5">User Info</h3>
-
-            <div className="mb-4">
-              <label htmlFor="posterName" className="block text-gray-700 font-bold mb-2">
-                Your Name
-              </label>
-              <input
-                type="text"
-                id="posterName"
-                name="posterName"
-                className="border rounded w-full py-2 px-3"
-                placeholder="Write your name"
-                value={posterName}
-                onChange={(e) => setPosterName(e.target.value)}
-              />
-            </div>
-
-            <div className="mb-4">
-              <label
-                htmlFor="posterAbout"
-                className="block text-gray-700 font-bold mb-2"
-              >
-                Your Description
-              </label>
-              <textarea
-                id="posterAbout"
-                name="posterAbout"
-                className="border rounded w-full py-2 px-3"
-                rows={4}
-                placeholder="What you do?"
-                value={posterAbout}
-                onChange={(e) => setPosterAbout(e.target.value)}
-              ></textarea>
-            </div>
-
-            <div className="mb-4">
-              <label
-                htmlFor="posterEmail"
-                className="block text-gray-700 font-bold mb-2"
-              >
-                Contact Email
-              </label>
-              <input
-                type="email"
-                id="posterEmail"
-                name="posterEmail"
-                className="border rounded w-full py-2 px-3"
-                placeholder="Email address"
-                value={posterEmail}
-                onChange={(e) => setPosterEmail(e.target.value)}
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label
-                htmlFor="posterPhone"
-                className="block text-gray-700 font-bold mb-2"
-              >
-                Contact Phone
-              </label>
-              <input
-                type="tel"
-                id="posterPhone"
-                name="posterPhone"
-                className="border rounded w-full py-2 px-3"
-                placeholder="Optional phone number"
-                value={posterPhone}
-                onChange={(e) => setPosterPhone(parseInt(e.target.value, 10))}// Convert the string value to a number using parseInt
-              />
             </div>
 
             <div>

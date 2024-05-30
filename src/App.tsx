@@ -6,7 +6,7 @@ import AdsPage from "./pages/AdsPage";
 import NotFound from "./pages/NotFound";
 import AdPage from "./pages/AdPage";
 import AddAdPage from "./pages/AddAdPage";
-import EditAdpage from "./pages/EditAdpage";
+import EditAdPage from "./pages/EditAdpage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignUpPage";
 
@@ -25,7 +25,7 @@ function App() {
         <Route index element={<HomePage />} />
         <Route path="/ads" element={<AdsPage />} />
         <Route path="/ads/:id" element={<AdPage/>} />
-        <Route path="/edit-ad/:id" element={<EditAdpage />} />
+        <Route path="/edit-ad/:id" element={<EditAdPage />} />
         <Route path="/add-ad" element={<AddAdPage />} />
         <Route path="*" element={<NotFound />} />
       </Route>

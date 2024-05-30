@@ -32,6 +32,8 @@ const AdPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+
+    console.log("Ad ID from URL:", id); // Debugging
     const fetchAd = async () => {
       try {
         if (!id) {
@@ -39,7 +41,7 @@ const AdPage = () => {
           throw new Error("Ad ID is not available");
         }
 
-        const response = await adService.getAd(id ?? '');
+        const response = await adService.getAd(id ?? "");
         console.log(response); // Verify the fetched data
 
         const adData = response.data;
@@ -54,7 +56,7 @@ const AdPage = () => {
           requiredSkills: adData.requiredSkills,
           description: adData.description,
           posterInfo: {
-            name: adData.author.name, 
+            name: adData.author.name,
             about: adData.author.about ?? "",
             email: adData.author.email,
             phoneNumber: adData.author.phoneNumber ?? 0,
@@ -111,8 +113,10 @@ const AdPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-6">
             <main>
               <div className="bg-white p-6 rounded-lg shadow-md text-center md:text-left">
-                <div className="text-zinc-400 mb-4">{ad?.posterName}</div>
-                <h1 className="text-3xl font-bold mb-4">{ad?.businessIdea}</h1>
+                <h1 className="text-xl font-bold mb-2 text-customBlue">
+                  {ad?.businessIdea}
+                </h1>
+
                 <div className="text-gray-500 mb-4 flex align-middle justify-center md:justify-start">
                   <FaMapMarker className="text-lg text-zinc-600 mr-2"></FaMapMarker>
                   <p className="text-zinc-600">{ad?.location}</p>
@@ -123,7 +127,7 @@ const AdPage = () => {
                 <h3 className="text-customBlue text-lg font-bold mb-6">
                   Description
                 </h3>
-                <p className="mb-4">{ad?.description}</p>
+                <p className="mb-4 ">{ad?.description}</p>
 
                 <h3 className="text-customBlue text-lg font-bold mb-2">
                   Initial Investment
@@ -144,25 +148,21 @@ const AdPage = () => {
             {/*<!-- sidebar */} {/*<!-- Poster Info */}
             <aside>
               <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-bold mb-6 text-customBlue">
-                  About me
-                </h3>
-
-                <h2 className="text-2xl text-zinc-500">
-                  {ad?.posterInfo?.name}
+                <h2 className="text-2xl text-customBlue">
+                  Hello! I'm {ad?.posterInfo?.name}
                 </h2>
 
-                <p className="my-2">{ad?.posterInfo?.about}</p>
+                <p className="my-2 text-zinc-500">{ad?.posterInfo?.about}</p>
 
                 <hr className="my-4" />
 
-                <h3 className="text-xl">Contact Email:</h3>
+                <h3 className="text-xl text-customBlue">Contact Email:</h3>
 
                 <p className="my-2 bg-zinc-200 p-2 font-bold text-gray-600">
                   {ad?.posterInfo?.email}
                 </p>
 
-                <h3 className="text-xl">Contact Phone:</h3>
+                <h3 className="text-xl text-customBlue">Contact Phone:</h3>
 
                 <p className="my-2 bg-zinc-200 p-2 font-bold text-gray-600">
                   {ad?.posterInfo?.phoneNumber}
@@ -176,14 +176,14 @@ const AdPage = () => {
                   Manage Ad
                 </h3>
                 <Link
-                  to={`/edit-ad/${ad?.id}`}
+                  to={`/edit-ad/${id}`}
                   className="bg-secondCyan hover:bg-customCyan text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
                 >
                   Edit Ad
                 </Link>
 
                 <button
-                  onClick={() => onDeleteClick(ad?.id ?? "")}
+                  onClick={() => onDeleteClick(`${id}`)}
                   className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
                 >
                   Delete Ad

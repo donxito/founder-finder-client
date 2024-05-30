@@ -1,54 +1,43 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import  { useState, useEffect, FormEvent } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import adService from "../services/adService";
 
 
 
-const EditAdPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>(); // Get the ad ID from the URL
-
+const EditAdPage = () => {
   const [businessIdea, setBusinessIdea] = useState("");
   const [description, setDescription] = useState("");
   const [investment, setInvestment] = useState("");
   const [location, setLocation] = useState("");
-  const [posterName, setPosterName] = useState("");
-  const [posterAbout, setPosterAbout] = useState("");
-  const [posterEmail, setPosterEmail] = useState("");
-  const [posterPhone, setPosterPhone] = useState("");
   const [requiredSkills, setRequiredSkills] = useState<string[]>([]);
-  const [newSkill, setNewSkill] = useState<string>("");
+  const [newSkill, setNewSkill] = useState("");
+
+  const { id } = useParams<{ id: string }>();
+  console.log("ID from params:", id);
 
   const navigate = useNavigate();
 
-  // useEffect hook to fetch ad data when the component mounts
   useEffect(() => {
-    const fetchData = async () => {
-      
+    const fetchAd = async () => {
       try {
-
         const response = await adService.getAd(id!);
         const adData = response.data;
 
-        // Populate the state variables with the fetched ad data
         setBusinessIdea(adData.businessIdea);
         setDescription(adData.description);
         setInvestment(adData.investment);
         setLocation(adData.location);
-        setPosterName(adData.posterInfo.name);
-        setPosterAbout(adData.posterInfo.about);
-        setPosterEmail(adData.posterInfo.email);
-        setPosterPhone(adData.posterInfo.phone);
         setRequiredSkills(adData.requiredSkills);
       } catch (error) {
-        console.error("Failed to fetch ad data", error);
+        console.error("Error fetching ad:", error);
+        toast.error("Failed to fetch ad data");
       }
     };
-    fetchData();
+
+    fetchAd();
   }, [id]);
 
-  // Function to handle adding a new skill
   const handleAddSkill = () => {
     if (newSkill.trim() !== "") {
       setRequiredSkills([...requiredSkills, newSkill.trim()]);
@@ -56,47 +45,41 @@ const EditAdPage: React.FC = () => {
     }
   };
 
-  // Function to handle removing a skill
   const handleRemoveSkill = (index: number) => {
-    setRequiredSkills(requiredSkills.filter((_, i) => i !== index));
+    setRequiredSkills((prevSkills) => prevSkills.filter((_, i) => i !== index));
   };
-
-  // Function to handle form submission
-  const handleSubmit = async (event: React.FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    const adData = {
-      businessIdea,
-      description,
-      investment,
-      location,
-      posterName,
-      posterInfo: {
-        name: posterName,
-        about: posterAbout,
-        email: posterEmail,
-        phone: parseInt(posterPhone), // Convert phone to a number
-      },
-      requiredSkills,
-    };
-    
-
     try {
-      // Update the ad with the new data
-      await adService.updateAd(id!, adData)
-      toast.success("Your Ad has been updated successfully");
-      navigate(`/ads/${id}`);
+      await adService.updateAd(id!, {
+        businessIdea,
+        description,
+        investment,
+        location,
+        requiredSkills,
+        posterName: "",
+        posterInfo: {
+          name: "",
+          about: "",
+          email: "",
+          phone: 0
+        }
+      });
+        toast.success("Ad updated successfully");
+        navigate(`/ads/${id}`);
     } catch (error) {
-      toast.error("Failed to update ad");
-      console.error("Failed to update ad", error);
+        console.error("Error updating ad:", error);
+        toast.error("Failed to update ad");
     }
-  };
+};
+
 
   return (
     <section className="bg-zinc-100">
       <div className="container m-auto max-w-2xl py-24">
         <div className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0">
           <form onSubmit={handleSubmit}>
-            <h2 className="text-3xl text-center font-semibold mb-6 text-customBlue">Edit Ad</h2>
+            <h2 className="text-3xl text-center font-semibold mb-6">Edit Ad</h2>
 
             <div className="mb-4">
               <label className="block text-gray-700 font-bold mb-2">
@@ -145,52 +128,27 @@ const EditAdPage: React.FC = () => {
                 className="border rounded w-full py-2 px-3"
                 value={investment}
                 onChange={(e) => setInvestment(e.target.value)}
-                required
-              >
-                <option value="">Select Investment</option>
-                <option value="No Idea">No Idea</option>
-                <option value="Under 10.000 DKK">Under 10.000 DKK</option>
-                <option value="10.000 DKK - 20.000 DKK">
-                  10.000 DKK - 20.000 DKK
-                </option>
-                <option value="20.000 DKK - 30.000 DKK">
-                  20.000 DKK - 30.000 DKK
-                </option>
-                <option value="30.000 DKK - 40.000 DKK">
-                  30.000 DKK - 40.000 DKK
-                </option>
-                <option value="40.000 DKK - 50.000 DKK">
-                  40.000 DKK - 50.000 DKK
-                </option>
-                <option value="50.000 DKK - 60.000 DKK">
-                  50.000 DKK - 60.000 DKK
-                </option>
-                <option value="60.000 DKK - 70.000 DKK">
-                  60.000 DKK - 70.000 DKK
-                </option>
-                <option value="70.000 DKK - 80.000 DKK">
-                  70.000 DKK - 80.000 DKK
-                </option>
-                <option value="80.000 DKK - 90.000 DKK">
-                  80.000 DKK - 90.000 DKK
-                </option>
-                <option value="90.000 DKK - 100.000 DKK">
-                  90.000 DKK - 100.000 DKK
-                </option>
-                <option value="Over 100.000 DKK">Over 100.000 DKK</option>
+                >
+                <option value="">Select an investment range</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
               </select>
             </div>
 
             <div className="mb-4">
-              <label className="block text-gray-700 font-bold mb-2">
+              <label
+                htmlFor="location"
+                className="block text-gray-700 font-bold mb-2"
+              >
                 Location
               </label>
               <input
                 type="text"
                 id="location"
                 name="location"
-                className="border rounded w-full py-2 px-3 mb-2"
-                placeholder="Write the desired location or 'Remote'"
+                className="border rounded w-full py-2 px-3"
+                placeholder="Enter your location"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
                 required
@@ -198,126 +156,62 @@ const EditAdPage: React.FC = () => {
             </div>
 
             <div className="mb-4">
-              <label className="block text-gray-700 font-bold mb-2">
-                Must Have Skills
+              <label
+                htmlFor="requiredSkills"
+                className="block text-gray-700 font-bold mb-2"
+              >
+                Required Skills
               </label>
+              <div className="flex flex-wrap">
+                {requiredSkills.map((skill, index) => (
+                  <span
+                    key={index}
+                    className="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+                  >
+                    {skill}
+                    <button
+                      type="button"
+                      className="ml-1 focus:outline-none"
+                      onClick={() => handleRemoveSkill(index)}
+                    >
+                      &#10006;
+                    </button>
+                  </span>
+                ))}
+              </div>
               <div className="flex">
                 <input
                   type="text"
                   id="newSkill"
                   name="newSkill"
-                  className="border rounded w-full py-2 px-3 mb-2"
-                  placeholder="Add a skill"
+                  className="border rounded w-full py-2 px-3 mt-2"
+                  placeholder="Add a new skill"
                   value={newSkill}
                   onChange={(e) => setNewSkill(e.target.value)}
                 />
                 <button
                   type="button"
+                  className="ml-2 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full focus:outline-none"
                   onClick={handleAddSkill}
-                  className="bg-secondCyan text-white py-2 px-4 ml-2 rounded"
                 >
                   Add
                 </button>
               </div>
-              <ul>
-                {requiredSkills.map((skill, index) => (
-                  <li
-                    key={index}
-                    className="flex justify-between items-center mt-2"
-                  >
-                    {skill}
-                    <button
-                      type="button"
-                      onClick={() => handleRemoveSkill(index)}
-                      className="text-red-500"
-                    >
-                      Remove
-                    </button>
-                  </li>
-                ))}
-              </ul>
             </div>
 
-            <h3 className="text-2xl mb-5">User Info</h3>
 
-            <div className="mb-4">
-              <label
-                htmlFor="posterName"
-                className="block text-gray-700 font-bold mb-2"
+            <div className="flex justify-between">
+              <Link
+                to={`/ads/${id}`}
+                className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
               >
-                Your Name
-              </label>
-              <input
-                type="text"
-                id="posterName"
-                name="posterName"
-                className="border rounded w-full py-2 px-3"
-                placeholder="Write your name"
-                value={posterName}
-                onChange={(e) => setPosterName(e.target.value)}
-              />
-            </div>
-
-            <div className="mb-4">
-              <label
-                htmlFor="posterAbout"
-                className="block text-gray-700 font-bold mb-2"
-              >
-                Your Description
-              </label>
-              <textarea
-                id="posterAbout"
-                name="posterAbout"
-                className="border rounded w-full py-2 px-3"
-                rows={4}
-                placeholder="What you do?"
-                value={posterAbout}
-                onChange={(e) => setPosterAbout(e.target.value)}
-              ></textarea>
-            </div>
-
-            <div className="mb-4">
-              <label
-                htmlFor="posterEmail"
-                className="block text-gray-700 font-bold mb-2"
-              >
-                Contact Email
-              </label>
-              <input
-                type="email"
-                id="posterEmail"
-                name="posterEmail"
-                className="border rounded w-full py-2 px-3"
-                placeholder="Email address"
-                value={posterEmail}
-                onChange={(e) => setPosterEmail(e.target.value)}
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label
-                htmlFor="posterPhone"
-                className="block text-gray-700 font-bold mb-2"
-              >
-                Contact Phone
-              </label>
-              <input
-                type="tel"
-                id="posterPhone"
-                name="posterPhone"
-                className="border rounded w-full py-2 px-3"
-                placeholder="Optional phone number"
-                value={posterPhone}
-                onChange={(e) => setPosterPhone(e.target.value)}
-              />
-            </div>
-
-            <div>
+                Cancel
+              </Link>
               <button
-                className="bg-secondCyan hover:bg-customCyan text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
                 type="submit"
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
               >
-                Update Ad
+                Save
               </button>
             </div>
           </form>
@@ -328,3 +222,4 @@ const EditAdPage: React.FC = () => {
 };
 
 export default EditAdPage;
+
