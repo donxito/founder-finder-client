@@ -5,6 +5,7 @@ import Spinner from "../components/Spinner";
 import { FaArrowLeft, FaMapMarker } from "react-icons/fa";
 import { toast } from "react-toastify";
 import adService from "../services/adService";
+import { Container } from "semantic-ui-react";
 
 interface Ad {
   id: string;
@@ -32,7 +33,6 @@ const AdPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-
     console.log("Ad ID from URL:", id); // Debugging
     const fetchAd = async () => {
       try {
@@ -124,10 +124,16 @@ const AdPage = () => {
               </div>
 
               <div className="bg-white p-6 rounded-lg shadow-md mt-6">
-                <h3 className="text-customBlue text-lg font-bold mb-6">
+                
+              <h3 className="text-customBlue text-lg font-bold mb-6">
                   Description
                 </h3>
-                <p className="mb-4 ">{ad?.description}</p>
+                <Container textAlign="justified">
+                <div className="p-4 bg-gray-100 rounded-md mb-4 overflow-hidden">
+                  <p className="text-gray-800 mb-0 break-words">{ad?.description}</p>
+                </div>
+                </Container>
+
 
                 <h3 className="text-customBlue text-lg font-bold mb-2">
                   Initial Investment

@@ -1,20 +1,19 @@
 import { useState } from "react";
 import { FaMapMarker } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { Container } from "semantic-ui-react";
 
-interface Ad {
+export interface Ad {
   _id: string;
   id: string;
+  posterName: string;
   businessIdea: string;
   description: string;
   location: string;
   investment: string;
   requiredSkills: Array<string>;
-  posterInfo: {
+  author: {
     name: string;
-    about: string;
-    email: string;
-    phoneNumber: string;
   };
 }
 
@@ -28,7 +27,7 @@ const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
 
   let description = ad.description;
   if (!showFullDescription) {
-    description = description.substring(0, 100) + "...";
+    description = description.substring(0, 200) + "...";
   }
 
   const handleClick = () => {
@@ -39,24 +38,31 @@ const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
     setShowSkills(!showSkills);
   };
 
-  let skills = ad.requiredSkills;
-  if (!skills) {
-    skills = [];
-  }
+  console.log(ad);
 
   return (
     <div className="bg-white rounded-xl shadow-md relative p-4">
-      <div className="mb-6">
-        <div className="text-zinc-400 my-2">{ad?.posterInfo?.name}</div>
-        <h3 className="text-xl font-bold">{ad.businessIdea}</h3>
-        <p className="text-gray-800 mt-4">{description}</p>
-        <button
-          onClick={handleClick}
-          className="text-customCyan mb-5 hover:text-secondCyan"
-        >
-          {showFullDescription ? "Less" : "More"}
-        </button>
+      <div className="container-xl lg:container m-auto">
+        <div className="text-zinc-400 my-2">{ad.author.name}</div>
+
+        <h3 className="text-xl font-bold my-2">{ad.businessIdea}</h3>
+
+        <Container textAlign="justified">
+          <div className="p-4 bg-gray-100 rounded-md mb-4 overflow-hidden">
+            <p className="text-gray-800 mb-0 break-words">{description}</p>
+              {/* Button to toggle description text */}
+            <button
+              onClick={handleClick}
+              className="text-blue-500 mb-2 hover:text-blue-700"
+            >
+              {showFullDescription ? "Less" : "More"}
+            </button>
+          </div>
+        </Container>
+
         <div className="border border-slate-100 mb-5"></div>
+
+        {/* Button to toggle skills list */}
         <button
           className="text-customCyan hover:text-secondCyan mb-4 font-medium"
           onClick={handleShowSkills}
@@ -65,7 +71,7 @@ const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
         </button>
         {showSkills && (
           <ul className="text-slate-700 my-1 list-disc pl-5 text-sm">
-            {skills.map((skill, index) => (
+            {ad?.requiredSkills.map((skill, index) => (
               <li key={index}>{skill}</li>
             ))}
           </ul>
