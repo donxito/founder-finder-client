@@ -40,6 +40,7 @@ const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
 
   console.log(ad);
 
+
   return (
     <div className="bg-white rounded-xl shadow-md relative p-4">
       <div className="container-xl lg:container m-auto">

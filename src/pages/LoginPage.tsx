@@ -42,6 +42,8 @@ function LoginPage() {
     authService.googleLogin();
   };
 
+
+
   return (
     <div className="LoginPage p-6 bg-white shadow-md rounded-md max-w-md mx-auto">
       <h1 className="text-2xl font-bold mb-4">Login</h1>
@@ -66,8 +68,10 @@ function LoginPage() {
       </form>
       {errorMessage && <p className="error-message mt-4">{errorMessage}</p>}
       <p className="mt-4">Do not have an account yet?</p>
-      <Link to="/signup" className="text-blue-500">Sign Up</Link>
-      <button onClick={handleGoogleLogin} className="btn mt-4 bg-customBlue text-white">
+      <Link to="/register" className="text-blue-500">Register</Link>
+     
+     
+      <button onClick={handleGoogleLogin} className="btn mt-4 mx-5 bg-customBlue text-white">
         Login with Google
       </button>
     </div>
