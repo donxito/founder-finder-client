@@ -1,10 +1,23 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-
-import React, { useState, useEffect } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useState, useEffect, createContext, ReactNode } from "react";
 import authService from "../services/auth.service";
 
-const AuthContext = React.createContext({
+interface AuthContextProps {
+  authenticateUser: () => void;
+  googleAuthenticateUser: () => void;
+  user: any;
+  loading: boolean;
+  isLoggedIn: boolean;
+  isOwner: boolean;
+  isAnon: boolean;
+  logOutUser: () => void;
+  storeToken: (token: string) => void;
+}
+
+const AuthContext = createContext<AuthContextProps>({
   authenticateUser: () => {},
+  googleAuthenticateUser: () => {},
   user: null,
   loading: false,
   isLoggedIn: false,
@@ -16,9 +29,8 @@ const AuthContext = React.createContext({
   },
 });
 
-
 interface AuthProviderWrapperProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 const AuthProviderWrapper: React.FC<AuthProviderWrapperProps> = ({ children }) => {
@@ -34,39 +46,48 @@ const AuthProviderWrapper: React.FC<AuthProviderWrapperProps> = ({ children }) =
 
   const authenticateUser = () => {
     const storedToken = localStorage.getItem("authToken");
-    const userId = localStorage.getItem("userId");
-
-    if (storedToken && userId) {
+    if (storedToken) {
       authService
         .verify()
         .then((response) => {
-          // If the token is valid, set user state and login status
-          setUser({ ...response.data.user, _id: userId }); // Assuming response contains user data
-          setIsLoggedIn(true);
           setUser(response.data);
+          setIsLoggedIn(true);
           setLoading(false);
         })
         .catch((error) => {
-          // If token verification fails, set login status to false
           setIsLoggedIn(false);
           setUser(null);
           setLoading(false);
           console.error("Token verification failed:", error);
         });
     } else {
-      // If token is unavailable, set login status to false
       setIsLoggedIn(false);
       setUser(null);
       setLoading(false);
     }
   };
 
-  const removeToken = () => {
-    localStorage.removeItem("authToken");
+  const googleAuthenticateUser = () => {
+    const storedToken = localStorage.getItem("authToken");
+    if (storedToken) {
+      authService
+        .verify()
+        .then((response) => {
+          setUser(response.data);
+          setIsLoggedIn(true);
+          setLoading(false);
+        })
+        .catch((error) => {
+          setIsLoggedIn(false);
+          setUser(null);
+          setLoading(false);
+          console.error("Token verification failed:", error);
+        });
+    }
   };
 
   const logOutUser = () => {
-    removeToken();
+    localStorage.removeItem("authToken");
     setIsLoggedIn(false);
     setUser(null);
   };
@@ -79,18 +100,19 @@ const AuthProviderWrapper: React.FC<AuthProviderWrapperProps> = ({ children }) =
     <AuthContext.Provider
       value={{
         authenticateUser,
+        googleAuthenticateUser,
         user,
         loading,
         isLoggedIn,
         isOwner,
         isAnon,
         logOutUser,
-        storeToken: storeToken,
+        storeToken,
       }}
     >
       {children}
     </AuthContext.Provider>
   );
-}
+};
 
 export { AuthProviderWrapper, AuthContext };

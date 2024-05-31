@@ -10,6 +10,8 @@ import EditAdPage from "./pages/EditAdpage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignUpPage";
 
+import GoogleAuthCallback from "./components/GoogleAuthCallback"; 
+
 
 
 
@@ -24,6 +26,7 @@ function App() {
       <Route path="/" element={<Mainlayout />}>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<SignupPage />} />
+        <Route path="/auth/google/callback" element={<GoogleAuthCallback />} />
         <Route index element={<HomePage />} />
         <Route path="/ads" element={<AdsPage />} />
         <Route path="/ads/:id" element={<AdPage/>} />
