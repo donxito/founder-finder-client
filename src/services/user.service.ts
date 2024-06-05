@@ -16,15 +16,16 @@ class UserService {
             return config;
         });
     }
-    // GET /users/:userId
+    // GET /user/:userId
     getUser = (userId: string) => {
+        console.log('Making GET request to /user/:userId with ID:', userId); // Debug log
         return this.api.get(`/users/${userId}`);
     };
-    // PUT /users/:userId
+    // PUT /user/:userId
     updateUser = (userId: string, requestBody: Partial<UserType>) => {
         return this.api.put(`/users/${userId}`, requestBody as object);
     };
-    // DELETE /users/:userId
+    // DELETE /user/:userId
     deleteUser = (userId: string) => {
         return this.api.delete(`/users/${userId}`);
     };

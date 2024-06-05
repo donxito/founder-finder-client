@@ -63,7 +63,7 @@ class AdService {
 
   // GET/users/ads/:userId
   getUserAds = (userId: string) => {
-    return  this.api.get(`/users/${userId}/ads`);
+    return  this.api.get(`/users/ads/${userId}`);
   };
 
 }

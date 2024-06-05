@@ -1,10 +1,13 @@
 export interface UserType {
+    _id: string;
     id: string;
     name: string;
     email: string;
-    phone: string;
-    about: string;
+    phoneNumber?: string;
+    about?: string;
     authToken?: string | undefined;
+    iat: number;
+  exp: number;
   
   
   }

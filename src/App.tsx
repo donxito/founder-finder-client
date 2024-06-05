@@ -10,6 +10,9 @@ import EditAdPage from "./pages/EditAdpage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignUpPage";
 
+import ProfilePage from "./pages/ProfilePage";
+
+
 
 
 
@@ -22,6 +25,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Mainlayout />}>
+        <Route path="/profile/:userId" element={<ProfilePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<SignupPage />} />
         <Route index element={<HomePage />} />

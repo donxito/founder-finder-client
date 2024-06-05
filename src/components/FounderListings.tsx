@@ -26,7 +26,7 @@ const FounderListings: React.FC<Props> = ({ isHome = false }) => {
               ...ad,
               id: ad._id // Map _id to id
             }));
-            setAds(adsWithId.slice(-3));
+            setAds(adsWithId.slice(-3)); // show the last 3 ads
           } else {
             setAds([]);
           }

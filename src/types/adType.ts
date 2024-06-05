@@ -1,4 +1,5 @@
 export interface Ad  {
+  _id: string;
   id: string;
   posterName: string;
   businessIdea: string;

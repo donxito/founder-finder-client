@@ -29,7 +29,7 @@ class AuthService {
             email: requestBody.email, 
             password: requestBody.password,
         };
-        console.log("Payload:", payload); // APAGAAAAAR!! NAO ESQUECER DE APAGAR
+        //console.log("Payload:", payload); // APAGAAAAAR!! NAO ESQUECER DE APAGAR
         return this.api.post("/auth/login", payload).then((response) => {
             const authToken = response.data.authToken;
             localStorage.setItem("authToken", authToken);
