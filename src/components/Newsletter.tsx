@@ -7,7 +7,7 @@ const Newsletter: React.FC = () => {
 
     const [email, setEmail] = useState<string>("");
     const [subscribed, setSubscribed] = useState<boolean>(false);
-    const [error, setError] = useState<string>("");
+    const [error] = useState<string>("");
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();

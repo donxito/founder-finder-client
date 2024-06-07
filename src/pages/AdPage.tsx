@@ -26,7 +26,7 @@ interface Ad {
 const AdPage = () => {
   const [ad, setAd] = useState<Ad | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+
 
   const { id } = useParams<{ id: string }>();
 
@@ -64,7 +64,6 @@ const AdPage = () => {
 
         setAd(transformedAd);
       } catch (error) {
-        setError("Failed to fetch ad");
         console.error("Error fetching data:", error);
       } finally {
         setLoading(false);

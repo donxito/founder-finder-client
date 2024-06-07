@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState, FormEvent, useEffect } from "react";
+import { useState, FormEvent} from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import adService from "../services/adService";
@@ -28,10 +28,10 @@ const AddAdPage = () => {
   const [description, setDescription] = useState("");
   const [investment, setInvestment] = useState("");
   const [location, setLocation] = useState("");
-  const [posterName, setPosterName] = useState("");
-  const [posterAbout, setPosterAbout] = useState("");
-  const [posterEmail, setPosterEmail] = useState("");
-  const [posterPhone, setPosterPhone] = useState<number>(0);
+  const [posterName] = useState("");
+  const [posterAbout] = useState("");
+  const [posterEmail] = useState("");
+  const [posterPhone] = useState<number>(0);
   const [requiredSkills, setRequiredSkills] = useState<string[]>([]);
   const [newSkill, setNewSkill] = useState<string>("");
 

@@ -25,8 +25,8 @@ const AuthProviderWrapper: React.FC<AuthProviderWrapperProps> = ({ children }) =
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isOwner, setIsOwner] = useState(false);
-  const [isAnon, setIsAnon] = useState(false);
+  const [isOwner] = useState(false);
+  const [isAnon] = useState(false);
 
   const storeToken = (token: string) => {
     localStorage.setItem("authToken", token);

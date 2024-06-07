@@ -16,7 +16,6 @@ const ProfilePage = () => {
   const [user, setUser] = useState<UserType | null>(null);
   const [ads, setAds] = useState<Ad[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
   const [editMode, setEditMode] = useState<boolean>(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -54,7 +53,6 @@ const ProfilePage = () => {
         setAds(userAds);
 
       } catch (error) {
-        setError("Failed to fetch user data or ads");
         console.error("Error fetching data:", error);
       } finally {
         setLoading(false);
@@ -97,7 +95,6 @@ const ProfilePage = () => {
       setUser({...user,...updatedUser });
   
     } catch (error) {
-      setError("Failed to update user data");
       console.error("Error updating data:", error);
     } finally {
       setLoading(false);
