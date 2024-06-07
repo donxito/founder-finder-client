@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import adService from "../services/adService";
+import { Button } from "semantic-ui-react";
 
 interface PosterInfo {
   name: string;
@@ -22,6 +23,7 @@ interface AdRequestBody {
 }
 
 const AddAdPage = () => {
+
   const [businessIdea, setBusinessIdea] = useState("");
   const [description, setDescription] = useState("");
   const [investment, setInvestment] = useState("");
@@ -33,7 +35,9 @@ const AddAdPage = () => {
   const [requiredSkills, setRequiredSkills] = useState<string[]>([]);
   const [newSkill, setNewSkill] = useState<string>("");
 
+
   const navigate = useNavigate();
+
 
   const handleAddSkill = () => {
     if (newSkill.trim() !== "") {
@@ -81,11 +85,11 @@ const AddAdPage = () => {
       <div className="container m-auto max-w-2xl py-24">
         <div className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0">
           <form onSubmit={handleSubmit}>
-            <h2 className="text-3xl text-center font-semibold mb-6">Post Ad</h2>
+            <h2 className="text-3xl text-center font-semibold mb-6 text-customBlue">Add Your Idea</h2>
 
             <div className="mb-4">
-              <label className="block text-gray-700 font-bold mb-2">
-                Idea Name
+              <label className="block text-customBlue font-semibold mb-2">
+                Business Idea
               </label>
               <input
                 type="text"
@@ -94,7 +98,7 @@ const AddAdPage = () => {
                 className="border rounded w-full py-2 px-3 mb-2"
                 placeholder="Write just a few words about your idea"
                 value={businessIdea}
-                onChange={(e) => setBusinessIdea(e.target.value)}
+                onChange={(event) => setBusinessIdea(event.target.value)}
                 required
               />
             </div>
@@ -102,7 +106,7 @@ const AddAdPage = () => {
             <div className="mb-4">
               <label
                 htmlFor="description"
-                className="block text-gray-700 font-bold mb-2"
+                className="block text-customBlue font-semibold mb-2"
               >
                 Idea Description
               </label>
@@ -113,14 +117,14 @@ const AddAdPage = () => {
                 rows={4}
                 placeholder="Add any job duties, expectations, requirements, etc"
                 value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                onChange={(event) => setDescription(event.target.value)}
               ></textarea>
             </div>
 
             <div className="mb-4">
               <label
                 htmlFor="type"
-                className="block text-gray-700 font-bold mb-2"
+                className="block text-customBlue font-semibold mb-2"
               >
                 Initial Investment
               </label>
@@ -129,18 +133,27 @@ const AddAdPage = () => {
                 name="investment"
                 className="border rounded w-full py-2 px-3"
                 value={investment}
-                onChange={(e) => setInvestment(e.target.value)}
+                onChange={(event) => setInvestment(event.target.value)}
                 required
               >
                 <option value="">Select an investment range</option>
-                <option value="Low">Low</option>
-                <option value="Medium">Medium</option>
-                <option value="High">High</option>
+                <option value="No Idea">No Idea</option>
+                <option value="Under 10.000 DKK">Under 10.000 DKK</option>
+                <option value="10.000 DKK - 20.000 DKK">10.000 DKK - 20.000 DKK</option>
+                <option value="20.000 DKK - 30.000 DKK">20.000 DKK - 30.000 DKK</option>
+                <option value="30.000 DKK - 40.000 DKK">30.000 DKK - 40.000 DKK</option>
+                <option value="40.000 DKK - 50.000 DKK">40.000 DKK - 50.000 DKK</option>
+                <option value="50.000 DKK - 60.000 DKK">50.000 DKK - 60.000 DKK</option>
+                <option value="60.000 DKK - 70.000 DKK">60.000 DKK - 70.000 DKK</option>
+                <option value="70.000 DKK - 80.000 DKK">70.000 DKK - 80.000 DKK</option>
+                <option value="80.000 DKK - 90.000 DKK">80.000 DKK - 90.000 DKK</option>
+                <option value="90.000 DKK - 100.000 DKK">90.000 DKK - 100.000 DKK</option>
+                <option value="Over 100.000 DKK">Over 100.000 DKK</option>
               </select>
             </div>
 
             <div className="mb-4">
-              <label className="block text-gray-700 font-bold mb-2">
+              <label className="block text-customBlue font-semibold mb-2">
                 Location
               </label>
               <input
@@ -150,14 +163,14 @@ const AddAdPage = () => {
                 className="border rounded w-full py-2 px-3 mb-2"
                 placeholder="Write the desired location or 'Remote'"
                 value={location}
-                onChange={(e) => setLocation(e.target.value)}
+                onChange={(event) => setLocation(event.target.value)}
                 required
               />
             </div>
 
             <div className="mb-4">
-              <label className="block text-gray-700 font-bold mb-2">
-                Must Have Skills
+              <label className="block text-customBlue font-semibold mb-2">
+              Required Skills
               </label>
               <div className="flex">
                 <input
@@ -167,24 +180,24 @@ const AddAdPage = () => {
                   className="border rounded w-full py-2 px-3 mb-2"
                   placeholder="Add a skill"
                   value={newSkill}
-                  onChange={(e) => setNewSkill(e.target.value)}
+                  onChange={(event) => setNewSkill(event.target.value)}
                 />
 
                 {/* Manage */}
 
-                <button
+                <Button
                   type="button"
                   onClick={handleAddSkill}
-                  className="bg-secondCyan text-white py-2 px-4 ml-2 rounded"
+                  basic color="blue"
                 >
-                  Add
-                </button>
+                  Add Skills
+                </Button>
               </div>
               <ul>
                 {requiredSkills.map((skill, index) => (
                   <li
                     key={index}
-                    className="flex justify-between items-center mt-2"
+                    className="flex justify-between items-center mt-2 text-customCyan"
                   >
                     {skill}
                     <button
@@ -201,10 +214,10 @@ const AddAdPage = () => {
 
             <div>
               <button
-                className="bg-secondCyan hover:bg-customCyan text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
+                className="bg-secondCyan text-white  hover:bg-customBlue  py-2 px-4 ml-2 rounded"
                 type="submit"
               >
-                Add Job
+                Add Your Idea
               </button>
             </div>
           </form>

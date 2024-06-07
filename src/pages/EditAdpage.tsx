@@ -2,6 +2,7 @@ import  { useState, useEffect, FormEvent } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import adService from "../services/adService";
+import { Button } from "semantic-ui-react";
 
 
 
@@ -79,11 +80,11 @@ const EditAdPage = () => {
       <div className="container m-auto max-w-2xl py-24">
         <div className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0">
           <form onSubmit={handleSubmit}>
-            <h2 className="text-3xl text-center font-semibold mb-6">Edit Ad</h2>
+            <h2 className="text-3xl text-center font-semibold mb-6 text-customBlue">Edit Your Idea</h2>
 
             <div className="mb-4">
-              <label className="block text-gray-700 font-bold mb-2">
-                Idea Name
+            <label className="block text-customBlue font-semibold mb-2">
+                Business Idea
               </label>
               <input
                 type="text"
@@ -92,7 +93,7 @@ const EditAdPage = () => {
                 className="border rounded w-full py-2 px-3 mb-2"
                 placeholder="Write just a few words about your idea"
                 value={businessIdea}
-                onChange={(e) => setBusinessIdea(e.target.value)}
+                onChange={(event) => setBusinessIdea(event.target.value)}
                 required
               />
             </div>
@@ -100,7 +101,7 @@ const EditAdPage = () => {
             <div className="mb-4">
               <label
                 htmlFor="description"
-                className="block text-gray-700 font-bold mb-2"
+                className="block text-customBlue font-semibold mb-2"
               >
                 Idea Description
               </label>
@@ -111,14 +112,14 @@ const EditAdPage = () => {
                 rows={4}
                 placeholder="Add any job duties, expectations, requirements, etc"
                 value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                onChange={(event) => setDescription(event.target.value)}
               ></textarea>
             </div>
 
             <div className="mb-4">
               <label
                 htmlFor="type"
-                className="block text-gray-700 font-bold mb-2"
+                className="block text-customBlue font-semibold mb-2"
               >
                 Initial Investment
               </label>
@@ -130,17 +131,25 @@ const EditAdPage = () => {
                 onChange={(e) => setInvestment(e.target.value)}
                 >
                 <option value="">Select an investment range</option>
-                <option value="Low">Low</option>
-                <option value="Medium">Medium</option>
-                <option value="High">High</option>
+                <option value="No Idea">No Idea</option>
+                <option value="Under 10.000 DKK">Under 10.000 DKK</option>
+                <option value="10.000 DKK - 20.000 DKK">10.000 DKK - 20.000 DKK</option>
+                <option value="20.000 DKK - 30.000 DKK">20.000 DKK - 30.000 DKK</option>
+                <option value="30.000 DKK - 40.000 DKK">30.000 DKK - 40.000 DKK</option>
+                <option value="40.000 DKK - 50.000 DKK">40.000 DKK - 50.000 DKK</option>
+                <option value="50.000 DKK - 60.000 DKK">50.000 DKK - 60.000 DKK</option>
+                <option value="60.000 DKK - 70.000 DKK">60.000 DKK - 70.000 DKK</option>
+                <option value="70.000 DKK - 80.000 DKK">70.000 DKK - 80.000 DKK</option>
+                <option value="80.000 DKK - 90.000 DKK">80.000 DKK - 90.000 DKK</option>
+                <option value="90.000 DKK - 100.000 DKK">90.000 DKK - 100.000 DKK</option>
+                <option value="Over 100.000 DKK">Over 100.000 DKK</option>
               </select>
             </div>
 
             <div className="mb-4">
               <label
                 htmlFor="location"
-                className="block text-gray-700 font-bold mb-2"
-              >
+                className="block text-customBlue font-semibold mb-2">
                 Location
               </label>
               <input
@@ -150,7 +159,7 @@ const EditAdPage = () => {
                 className="border rounded w-full py-2 px-3"
                 placeholder="Enter your location"
                 value={location}
-                onChange={(e) => setLocation(e.target.value)}
+                onChange={(event) => setLocation(event.target.value)}
                 required
               />
             </div>
@@ -158,15 +167,14 @@ const EditAdPage = () => {
             <div className="mb-4">
               <label
                 htmlFor="requiredSkills"
-                className="block text-gray-700 font-bold mb-2"
-              >
+                className="block text-customBlue font-semibold mb-2">
                 Required Skills
               </label>
               <div className="flex flex-wrap">
                 {requiredSkills.map((skill, index) => (
                   <span
                     key={index}
-                    className="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+                    className="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-customCyan mr-2 mb-2"
                   >
                     {skill}
                     <button
@@ -187,32 +195,36 @@ const EditAdPage = () => {
                   className="border rounded w-full py-2 px-3 mt-2"
                   placeholder="Add a new skill"
                   value={newSkill}
-                  onChange={(e) => setNewSkill(e.target.value)}
+                  onChange={(event) => setNewSkill(event.target.value)}
                 />
-                <button
-                  type="button"
-                  className="ml-2 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full focus:outline-none"
-                  onClick={handleAddSkill}
+                <Button
+                type="button"
+                basic color="blue" 
+                onClick={handleAddSkill}
                 >
-                  Add
-                </button>
+                  Add Skills
+                </Button>
               </div>
             </div>
 
 
             <div className="flex justify-between">
-              <Link
-                to={`/ads/${id}`}
-                className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
-              >
-                Cancel
-              </Link>
-              <button
+
+            <button
                 type="submit"
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
+                className="bg-secondCyan text-white  hover:bg-customBlue  py-2 px-4 ml-2 rounded"
               >
                 Save
               </button>
+
+
+              <Link
+                to={`/ads/${id}`}
+                className=" text-gray-800 font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
+              >
+                Cancel
+              </Link>
+            
             </div>
           </form>
         </div>

@@ -5,7 +5,7 @@ import Spinner from "../components/Spinner";
 import { FaArrowLeft, FaMapMarker } from "react-icons/fa";
 import { toast } from "react-toastify";
 import adService from "../services/adService";
-import { Container } from "semantic-ui-react";
+import { Container, Button } from "semantic-ui-react";
 
 interface Ad {
   id: string;
@@ -92,6 +92,10 @@ const AdPage = () => {
     }
   };
 
+  const handleClick = () => {
+    navigate(`/edit-ad/${id}`);
+  }
+
   return loading ? (
     <Spinner loading={loading} />
   ) : (
@@ -118,8 +122,8 @@ const AdPage = () => {
                 </h1>
 
                 <div className="text-gray-500 mb-4 flex align-middle justify-center md:justify-start">
-                  <FaMapMarker className="text-lg text-zinc-600 mr-2"></FaMapMarker>
-                  <p className="text-zinc-600">{ad?.location}</p>
+                  <FaMapMarker className="text-lg text-customCyan mr-2"></FaMapMarker>
+                  <p className="text-customCyan">{ad?.location}</p>
                 </div>
               </div>
 
@@ -179,21 +183,22 @@ const AdPage = () => {
 
               <div className="bg-white p-6 rounded-lg shadow-md mt-6">
                 <h3 className="text-xl font-bold mb-6 text-customBlue">
-                  Manage Ad
+                  Manage your Post
                 </h3>
-                <Link
-                  to={`/edit-ad/${id}`}
-                  className="bg-secondCyan hover:bg-customCyan text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
-                >
-                  Edit Ad
-                </Link>
+                <Button
 
-                <button
-                  onClick={() => onDeleteClick(`${id}`)}
-                  className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
+                onClick={handleClick}
+                  color="facebook"
                 >
-                  Delete Ad
-                </button>
+                  Edit 
+                </Button>
+
+                <Button
+                  onClick={() => onDeleteClick(`${id}`)}
+                  basic color="blue"
+                >
+                  Delete 
+                </Button>
               </div>
             </aside>
           </div>

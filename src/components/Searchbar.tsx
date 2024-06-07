@@ -120,7 +120,7 @@ const handleCategorySelect = (category: string) => {
         </label>
         <button
           id="dropdown-button"
-          className="flex-shrink-0 z-10 inline-flex items-center py-3 px-6 text-sm font-medium text-center text-slate-700 bg-zinc-300 border border-zinc-200 rounded-s-lg hover:bg-zinc-200 focus:ring-4 focus:outline-none focus:ring-zinc-200"
+          className="flex-shrink-0 z-10 inline-flex items-center py-3 px-6 text-sm font-medium text-center text-slate-700 bg-zinc-300 border border-zinc-200 rounded-s-lg hover:bg-zinc-200"
           type="button"
           onClick={() => setDropdownOpen(!dropdownOpen)}
         >
@@ -205,7 +205,7 @@ const handleCategorySelect = (category: string) => {
           <button
             type="submit"
             onClick={(e) => e.preventDefault()}
-            className="absolute top-0 right-0 p-4 text-lg font-medium h-full text-white bg-customBlue rounded-e-lg border border-customBlue hover:bg-secondCyan focus:ring-4 focus:outline-none focus:ring-customCyan"
+            className="absolute top-0 right-0 p-4 text-lg font-medium h-full text-white bg-customBlue rounded-e-lg border border-customBlue hover:bg-secondCyan hover:border-secondCyan focus:ring-4 focus:outline-none focus:ring-customCyan"
             disabled={category === "Choose a category"}
           >
             <svg

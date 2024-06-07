@@ -1,34 +1,42 @@
-import { Link } from "react-router-dom";
 import Card from "./Card";
+import { Button } from "semantic-ui-react";
+import { useNavigate } from "react-router-dom";
 
 const BoardCards = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/add-ad");
+  };
+
+  const handleOtherClick = () => {
+    navigate("/ads");
+  };
+
   return (
-    <section className="py-20 bg-white ">
+    <section className="py-16 bg-white mb-10">
       <div className="container-lg lg:container m-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-4 rounded-sm">
           <Card>
-            <h2 className="text-2xl font-bold">Find your Founder Partner</h2>
-            <p className="mt-2 mb-4">
+            <h2 className="text-2xl font-bold text-white">
+              Find your co-Founder
+            </h2>
+            <p className="mt-2 mb-4 text-white">
               Browse our adds and see if you find something interesting
             </p>
-            <Link
-              to="/ads"
-              className="inline-block bg-slate-700 text-white rounded-lg px-4 py-2 hover:bg-secondCyan"
-            >
+            <Button onClick={handleOtherClick} inverted color="blue">
               Browse Ads
-            </Link>
+            </Button>
           </Card>
-          <Card bg="bg-secondCyan">
-            <h2 className="text-2xl font-bold text-white">Add your Idea</h2>
+
+          <Card bg="bg-customBlue">
+            <h2 className="text-2xl font-bold text-white">
+              Add your Idea
+            </h2>
             <p className="mt-2 mb-4 text-white">
               List your idea to find the perfect founder partner
             </p>
-            <Link
-              to="/add-ad"
-              className="inline-block bg-zinc-300 text-customBlue rounded-lg px-4 py-2 hover:bg-customCyan"
-            >
-              Post Ads
-            </Link>
+            <Button onClick={handleClick} inverted color="grey">Post Ads</Button>
           </Card>
         </div>
       </div>

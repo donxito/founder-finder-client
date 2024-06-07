@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { FaMapMarker } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import { Container } from "semantic-ui-react";
+import { useNavigate } from "react-router-dom";
+import { Container, Button } from "semantic-ui-react";
+
 
 export interface Ad {
   _id: string;
@@ -22,8 +23,11 @@ interface FounderListingProps {
 }
 
 const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
+
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [showSkills, setShowSkills] = useState(false);
+
+  const navigate = useNavigate();
 
   let description = ad.description;
   if (!showFullDescription) {
@@ -37,6 +41,11 @@ const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
   const handleShowSkills = () => {
     setShowSkills(!showSkills);
   };
+
+  const handleReadMore = () => {
+    navigate(`/ads/${ad?.id}`)
+
+  }
 
   console.log(ad);
 
@@ -53,7 +62,7 @@ const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
               {/* Button to toggle description text */}
             <button
               onClick={handleClick}
-              className="text-blue-500 mb-2 hover:text-blue-700"
+              className="text-secondCyan mb-2 hover:text-customBlue"
             >
               {showFullDescription ? "Less" : "More"}
             </button>
@@ -64,7 +73,7 @@ const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
 
         {/* Button to toggle skills list */}
         <button
-          className="text-customCyan hover:text-secondCyan mb-4 font-medium"
+          className="text-secondCyan hover:text-customBlue mb-4 font-medium"
           onClick={handleShowSkills}
         >
           Must Have Skills
@@ -77,16 +86,16 @@ const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
           </ul>
         )}
         <div className="flex flex-col lg:flex-row justify-between mb-4">
-          <div className="text-zinc-600 mb-3">
+          <div className="text-customCyan my-3">
             <FaMapMarker className="inline text-lg mb-1 mr-1" />
             {ad.location}
           </div>
-          <Link
-            to={`/ads/${ad?.id}`}
-            className="h-[36px] bg-customBlue hover:bg-slate-600 text-white px-4 py-2 rounded-lg text-center text-sm"
+          <Button
+          color="facebook"
+            onClick={handleReadMore}
           >
             Read More
-          </Link>
+          </Button>
         </div>
       </div>
     </div>

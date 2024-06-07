@@ -50,10 +50,10 @@ const FounderListings: React.FC<Props> = ({ isHome = false }) => {
   }, [isHome]);
 
   return (
-    <section className="bg-zinc-100 px-4 py-10">
+    <section className="bg-zinc-100 px-4 py-16 mb-2">
       <div className="container-xl lg:container m-auto">
         <h2 className="text-3xl font-bold text-customBlue mb-6 text-center">
-          {isHome ? "Recent Ads" : "All Ads"}
+          {isHome ? "Latest Posts" : "Find a co-founder"}
         </h2>
 
         {loading ? (
