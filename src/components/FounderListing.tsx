@@ -86,12 +86,12 @@ const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
           </ul>
         )}
         <div className="flex flex-col lg:flex-row justify-between mb-4">
-          <div className="text-customCyan my-3">
+          <div className="text-slate-700 my-3">
             <FaMapMarker className="inline text-lg mb-1 mr-1" />
             {ad.location}
           </div>
           <Button
-          color="facebook"
+          color="blue"
             onClick={handleReadMore}
           >
             Read More

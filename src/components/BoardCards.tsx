@@ -36,7 +36,7 @@ const BoardCards = () => {
             <p className="mt-2 mb-4 text-white">
               List your idea to find the perfect founder partner
             </p>
-            <Button onClick={handleClick} inverted color="grey">Post Ads</Button>
+            <Button onClick={handleClick} inverted color="blue">Post Ads</Button>
           </Card>
         </div>
       </div>

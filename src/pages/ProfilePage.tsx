@@ -196,7 +196,7 @@ const ProfilePage = () => {
                     inverted color="blue"
                       onClick={() => setEditMode(true)}
                     >
-                      Edit
+                      Edit Profile
                     </Button>
                   </>
                 )}
@@ -221,7 +221,7 @@ const ProfilePage = () => {
                 <ul>
                   {ads.map((ad, index) => (
                     <li key={index} className="mb-4">
-                      <Link to={`/ads/${ad._id}`} className="text-secondCyan font-bold hover:text-customBlue hover:underline">
+                      <Link to={`/ads/${ad._id}`} className="text-customCyan font-bold hover:text-secondCyan hover:underline">
                         {ad.businessIdea}
                       </Link>
                     </li>

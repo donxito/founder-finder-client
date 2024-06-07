@@ -177,7 +177,7 @@ const AddAdPage = () => {
                   type="text"
                   id="newSkill"
                   name="newSkill"
-                  className="border rounded w-full py-2 px-3 mb-2"
+                  className="border rounded w-full py-2 px-3 mb-2 mr-4"
                   placeholder="Add a skill"
                   value={newSkill}
                   onChange={(event) => setNewSkill(event.target.value)}

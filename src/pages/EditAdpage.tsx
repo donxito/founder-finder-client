@@ -192,7 +192,7 @@ const EditAdPage = () => {
                   type="text"
                   id="newSkill"
                   name="newSkill"
-                  className="border rounded w-full py-2 px-3 mt-2"
+                  className="border rounded w-full py-2 px-3 mt-2 mr-4"
                   placeholder="Add a new skill"
                   value={newSkill}
                   onChange={(event) => setNewSkill(event.target.value)}
