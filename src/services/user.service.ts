@@ -18,7 +18,6 @@ class UserService {
     }
     // GET /user/:userId
     getUser = (userId: string) => {
-        console.log('Making GET request to /user/:userId with ID:', userId); // Debug log
         return this.api.get(`/users/${userId}`);
     };
     // PUT /user/:userId

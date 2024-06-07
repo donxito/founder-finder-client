@@ -33,7 +33,6 @@ const AdPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("Ad ID from URL:", id); // Debugging
     const fetchAd = async () => {
       try {
         if (!id) {
@@ -111,7 +110,7 @@ const AdPage = () => {
         </div>
       </section>
 
-      <section className="bg-zinc-100">
+      <section className="bg-zinc-100 mt-16">
         <div className="container m-auto py-10 px-6">
           {/* grid layout with two columns on larger screens  */}
           <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-6">
