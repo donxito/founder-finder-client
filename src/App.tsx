@@ -14,8 +14,10 @@ import ProfilePage from "./pages/ProfilePage";
 import IsLoggedIn from "./context/IsLoggedIn";
 import IsAnon from "./context/IsAnon";
 
+
 function App() {
   return (
+
     <Routes>
       <Route path="/" element={<Mainlayout />}>
         <Route index element={<HomePage />} />
@@ -70,6 +72,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
+
   );
 }
 
