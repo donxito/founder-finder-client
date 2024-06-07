@@ -1,30 +1,52 @@
-# React + TypeScript + Vite
+# Founder Finder Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Founder Finder is a web application where users can search for potential co-founders. 
 
-Currently, two official plugins are available:
+Finding a co-founder is hard, we provide you with the platform to make that easier. Building a start-up is hard work. It is a journey to create something new and it takes believing in a dream each and every day, often against all odds.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Finding a co-founder is one of the most difficult parts of the process. The goal is to find someone that completes you, someone that will share the burdens and the joys along the way. 
 
-## Expanding the ESLint configuration
+This repository contains the code for the client-side of the application, built using TypeScript, React, and Tailwind CSS.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Features
 
-- Configure the top-level `parserOptions` property like this:
+- **User Authentication**: Users can sign up, log in, and log out securely.
+- **Search for Co-founders**: Users can search for potential co-founders based on various criteria.
+- **Add New Ideas**: Logged-in users can add their startup ideas to the platform.
+- **Profile Management**: Users can manage their profiles, including viewing and editing their information.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Technologies Used
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- TypeScript: A statically typed superset of JavaScript.
+- React: A JavaScript library for building user interfaces.
+- React Router: For managing routes in the application.
+- Context API: For managing global state such as user authentication.
+- Axios: For making HTTP requests to the backend API.
+- Tailwind CSS: A utility-first CSS framework used for styling.
+
+## Getting Started
+
+1. Clone the repository:
+
+git clone <frontend-repo-url>
+cd founder-finder-frontend
+
+2. Install dependencies:
+
+npm install
+
+3. Run the development server:
+
+npm start
+
+
+4. Open http://localhost:3000 in your browser to view the application.
+
+
+## Contributing
+
+Contributions are welcome! Feel free to open issues or submit pull requests.
+
+
+
+
