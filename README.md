@@ -8,6 +8,10 @@ Finding a co-founder is one of the most difficult parts of the process. The goal
 
 This repository contains the code for the client-side of the application, built using TypeScript, React, and Tailwind CSS.
 
+- Deployed live version: [Live demo](https://founder-finder.vercel.app/)
+
+- Backend Repo: https://github.com/donxito/founder-finder-server
+
 ## Features
 
 - **User Authentication**: Users can sign up, log in, and log out securely.
@@ -41,6 +45,18 @@ npm start
 
 
 4. Open http://localhost:3000 in your browser to view the application.
+
+## Screenshots
+
+<img width="2048" alt="Screenshot 2024-06-09 at 00 29 08" src="https://github.com/donxito/founder-finder-client/assets/96595540/d70ee07b-1361-4eab-8a8c-d0b687265336">
+<img width="2048" alt="Screenshot 2024-06-09 at 00 27 07" src="https://github.com/donxito/founder-finder-client/assets/96595540/e9a558b0-f93a-4a69-98ef-0ab20616e403">
+<img width="2048" alt="Screenshot 2024-06-09 at 00 26 45" src="https://github.com/donxito/founder-finder-client/assets/96595540/758c74fa-12d6-430c-a583-afbc4cb4e02a">
+<img width="438" alt="Screenshot 2024-06-09 at 00 25 48" src="https://github.com/donxito/founder-finder-client/assets/96595540/767398b0-cf6a-45f5-b58b-2ca021c534df">
+<img width="438" alt="Screenshot 2024-06-09 at 00 25 22" src="https://github.com/donxito/founder-finder-client/assets/96595540/52533fd0-15e3-4e38-9ef8-16e270e442f4">
+<img width="438" alt="Screenshot 2024-06-09 at 00 24 22" src="https://github.com/donxito/founder-finder-client/assets/96595540/ee04bf88-c8f3-4e61-ba8e-56fc22180a36">
+<img width="438" alt="Screenshot 2024-06-09 at 00 22 42" src="https://github.com/donxito/founder-finder-client/assets/96595540/9656f2cc-b803-4021-8063-0fab39669355">
+<img width="2055" alt="Screenshot 2024-06-09 at 00 19 20" src="https://github.com/donxito/founder-finder-client/assets/96595540/f26628cc-934f-47f1-8821-b589bca2f982">
+
 
 
 ## Contributing
