@@ -62,7 +62,7 @@ const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
               {/* Button to toggle description text */}
             <button
               onClick={handleClick}
-              className="text-secondCyan mb-2 hover:text-customBlue"
+              className="text-customCyan mb-2 hover:text-secondCyan"
             >
               {showFullDescription ? "Less" : "More"}
             </button>
