@@ -23,7 +23,7 @@ const AuthProviderWrapper: React.FC<{ children: React.ReactNode }> = ({ children
 
   const authenticateUser = () => {
     const storedToken = localStorage.getItem("authToken");
-    console.log("Stored token:", storedToken);
+   // console.log("Stored token:", storedToken);
 
     if (storedToken) {
       authService

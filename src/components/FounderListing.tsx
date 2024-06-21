@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaMapMarker } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { Container, Button } from "semantic-ui-react";
-
+import { format, isValid, parseISO } from "date-fns";
 
 export interface Ad {
   _id: string;
@@ -16,6 +16,7 @@ export interface Ad {
   author: {
     name: string;
   };
+  date?: string;
 }
 
 interface FounderListingProps {
@@ -23,9 +24,9 @@ interface FounderListingProps {
 }
 
 const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
-
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [showSkills, setShowSkills] = useState(false);
+  const [formattedDate, setFormattedDate] = useState("Invalid date");
 
   const navigate = useNavigate();
 
@@ -43,11 +44,30 @@ const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
   };
 
   const handleReadMore = () => {
-    navigate(`/ads/${ad?.id}`)
+    navigate(`/ads/${ad?.id}`);
+  };
 
-  }
+  // date functions
 
-  console.log(ad);
+  useEffect(() => {
+    if (ad.date) {
+      try {
+        const createdAtDate = parseISO(ad.date);
+        // console.log('Raw createdAt:', ad.date);
+        // console.log('Parsed createdAtDate:', createdAtDate);
+
+        if (isValid(createdAtDate)) {
+          const formatted = format(createdAtDate, "MMMM dd, yyyy");
+          // console.log('Formatted Date:', formatted);
+          setFormattedDate(formatted);
+        }
+      } catch (error) {
+        console.error("Error parsing date:", error);
+      }
+    }
+  }, [ad.date]);
+
+  // console.log(ad)
 
   return (
     <div className="bg-white rounded-xl shadow-md relative p-4">
@@ -59,7 +79,7 @@ const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
         <Container textAlign="justified">
           <div className="p-4 bg-gray-100 rounded-md mb-4 overflow-hidden">
             <p className="text-gray-800 mb-0 break-words">{description}</p>
-              {/* Button to toggle description text */}
+            {/* Button to toggle description text */}
             <button
               onClick={handleClick}
               className="text-customCyan mb-2 hover:text-secondCyan"
@@ -90,10 +110,12 @@ const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
             <FaMapMarker className="inline text-lg mb-1 mr-1" />
             {ad.location}
           </div>
-          <Button
-          color="blue"
-            onClick={handleReadMore}
-          >
+
+          <time className="text-gray-500 text-sm italic text-right pb-2 relative right-4">
+            {formattedDate}
+          </time>
+
+          <Button color="blue" onClick={handleReadMore}>
             Read More
           </Button>
         </div>
