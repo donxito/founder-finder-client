@@ -89,6 +89,12 @@ const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
           </div>
         </Container>
 
+        {formattedDate && (
+          <time className="text-gray-500 text-sm italic pb-2">
+            {formattedDate}
+          </time>
+        )}
+
         <div className="border border-slate-100 mb-5"></div>
 
         {/* Button to toggle skills list */}
@@ -110,10 +116,6 @@ const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
             <FaMapMarker className="inline text-lg mb-1 mr-1" />
             {ad.location}
           </div>
-
-          <time className="text-gray-500 text-sm italic text-right pb-2 relative right-4">
-            {formattedDate}
-          </time>
 
           <Button color="blue" onClick={handleReadMore}>
             Read More
