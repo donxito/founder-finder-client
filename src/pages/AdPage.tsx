@@ -135,7 +135,8 @@ const AdPage = () => {
                   <p className="text-gray-800 mb-0 break-words">{ad?.description}</p>
                 </div>
                 </Container>
-
+                
+               <hr className="my-4" />
 
                 <h3 className="text-customBlue text-lg font-bold mb-2">
                   Initial Investment

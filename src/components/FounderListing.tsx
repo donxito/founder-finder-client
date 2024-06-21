@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { FaMapMarker } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { Container, Button } from "semantic-ui-react";
+import { Container, Button, Label } from "semantic-ui-react";
 import { format, isValid, parseISO } from "date-fns";
 
 export interface Ad {
@@ -17,6 +17,7 @@ export interface Ad {
     name: string;
   };
   date?: string;
+  example?: boolean
 }
 
 interface FounderListingProps {
@@ -71,6 +72,15 @@ const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
 
   return (
     <div className="bg-white rounded-xl shadow-md relative p-4">
+
+      {ad.example && (
+         <Label as='a' color='blue' ribbon onClick={handleReadMore}>
+         Example
+       </Label>
+      )}
+
+
+
       <div className="container-xl lg:container m-auto">
         <div className="text-zinc-400 my-2">{ad.author.name}</div>
 

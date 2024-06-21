@@ -120,7 +120,7 @@ const handleCategorySelect = (category: string) => {
         </label>
         <button
           id="dropdown-button"
-          className="flex-shrink-0 z-10 inline-flex items-center py-3 px-6 text-sm font-medium text-center text-slate-700 bg-zinc-300 border border-zinc-200 rounded-s-lg hover:bg-zinc-200"
+          className="flex-shrink-0 z-10 inline-flex items-center py-3 px-6 text-sm font-medium text-center text-white bg-customBlue border border-zinc-200 rounded-s-lg hover:bg-secondCyan"
           type="button"
           onClick={() => setDropdownOpen(!dropdownOpen)}
         >
@@ -144,7 +144,7 @@ const handleCategorySelect = (category: string) => {
 
         {/* Dropdown Menu */}
         {dropdownOpen && (
-          <div className="absolute bg-slate-700 divide-y divide-gray-100 rounded-lg shadow w-44 ">
+          <div className="absolute bg-customBlue divide-y divide-gray-100 rounded-lg shadow w-44 ">
             <ul className="py-2 text-sm text-zinc-300">
               <li>
                 <button
@@ -184,7 +184,7 @@ const handleCategorySelect = (category: string) => {
             id="search-dropdown"
             value={searchQuery}
             onChange={handleSearch}
-            className="block p-4 w-full z-20 text-lg text-slate-700 bg-zinc-300 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-customCyan focus:border-customCyan"
+            className="block p-4 w-full z-20 text-lg text-slate-700 bg-white rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-customCyan focus:border-customCyan"
             placeholder="Choose to search location or business keywords"
             
           />
