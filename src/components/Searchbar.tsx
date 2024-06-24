@@ -120,7 +120,7 @@ const handleCategorySelect = (category: string) => {
         </label>
         <button
           id="dropdown-button"
-          className="flex-shrink-0 z-10 inline-flex items-center py-3 px-6 text-sm font-medium text-center text-white bg-customBlue border border-zinc-200 rounded-s-lg hover:bg-secondCyan"
+          className="flex-shrink-0 z-10 inline-flex items-center py-3 px-6 text-sm font-medium text-center text-white bg-customBlue rounded-s-lg hover:bg-secondCyan"
           type="button"
           onClick={() => setDropdownOpen(!dropdownOpen)}
         >
@@ -238,7 +238,7 @@ const handleCategorySelect = (category: string) => {
             ) : (
               filteredAds.map((ad) => (
                 <Link to={`/ads/${ad.id}`} key={ad.id}>
-                  <li className="my-4 text-lg font-bold text-zinc-300 hover:text-zinc-100">
+                  <li className="my-4 text-lg font-bold text-zinc-200 hover:text-zinc-100">
                     {ad.businessIdea}
                   </li>
                 </Link>

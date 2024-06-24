@@ -20,7 +20,7 @@ const Hero = () => {
 
 
   return (
-    <section className='bg-slate-300 py-10'>
+    <section className='bg-slate-400 py-10'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center'>
         <div className='text-center'>
           <h1 className='text-4xl font-extrabold text-customBlue sm:text-5xl md:text-6xl mt-10 pt-20 pb-10 tracking-wide '>
