@@ -47,6 +47,7 @@ const AuthProviderWrapper: React.FC<{ children: ReactNode }> = ({ children }) =>
           setLoading(false);
         })
         .catch((error) => {
+          console.log(error)
           setIsLoggedIn(false);
           setUser(null);
           setLoading(false);
