@@ -1,7 +1,20 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { useState, useEffect, createContext, useContext, ReactNode } from "react";
 import authService from "../services/auth.service";
+import { UserType } from "../types/userType";
 
-const AuthContext = React.createContext({
+// Define the shape of the AuthContext
+interface AuthContextType {
+  authenticateUser: () => void;
+  user: UserType | null;
+  loading: boolean;
+  isLoggedIn: boolean;
+  logOutUser: () => void;
+  storeToken: (token: string) => void;
+}
+
+// Initialize the context with default values
+const AuthContext = createContext<AuthContextType>({
   authenticateUser: () => {},
   user: null,
   loading: false,
@@ -12,8 +25,9 @@ const AuthContext = React.createContext({
   },
 });
 
-const AuthProviderWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState(null);
+// Define the AuthProviderWrapper component
+const AuthProviderWrapper: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [user, setUser] = useState<UserType | null>(null);
   const [loading, setLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -23,19 +37,16 @@ const AuthProviderWrapper: React.FC<{ children: React.ReactNode }> = ({ children
 
   const authenticateUser = () => {
     const storedToken = localStorage.getItem("authToken");
-   // console.log("Stored token:", storedToken);
 
     if (storedToken) {
       authService
         .verify()
         .then((response) => {
-          console.log("Verify response:", response);
           setUser(response.data);
           setIsLoggedIn(true);
           setLoading(false);
         })
         .catch((error) => {
-          console.error("Token verification failed:", error);
           setIsLoggedIn(false);
           setUser(null);
           setLoading(false);
@@ -73,4 +84,7 @@ const AuthProviderWrapper: React.FC<{ children: React.ReactNode }> = ({ children
   );
 };
 
-export { AuthProviderWrapper, AuthContext };
+// Create a hook for easy access to the AuthContext
+const useAuth = () => useContext(AuthContext);
+
+export { AuthProviderWrapper, useAuth, AuthContext };

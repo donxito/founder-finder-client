@@ -9,14 +9,14 @@ const Footer = () => {
 		
         <div className="flex flex-row pr-3 space-x-4 sm:space-x-8">
             
-            <img className="h-8 w-auto" src={logo} alt="logo" />
+            <img className=" h-6 w-auto sm:h-8 sm:w-auto" src={logo} alt="logo" />
 	
 			<ul className="flex flex-wrap items-center space-x-4 sm:space-x-8">
 				<li>
 					<Link 
                     to={"/"}
                     rel="noopener noreferrer"
-                    className="text-customCyan rounded-md px-3 py-2"
+                    className="text-customCyan rounded-md px-1 py-1 sm:py-2 text-xs sm:text-sm sm:px-3"
                     >Terms of Use
                     </Link>
 				</li>
@@ -24,7 +24,7 @@ const Footer = () => {
 				<Link 
                     to={"/"}
                     rel="noopener noreferrer"
-                    className="text-customCyan rounded-md px-3 py-2"
+                    className="text-customCyan rounded-md px-1 py-1 sm:py-2 text-xs sm:text-sm sm:px-3"
                     >Privacy
                     </Link>
 				</li>
@@ -32,15 +32,15 @@ const Footer = () => {
                 <Link 
                     to={"/"}
                     rel="noopener noreferrer"
-                    className="text-customCyan rounded-md px-3 py-2"
+                    className="text-customCyan rounded-md px-1 py-1 sm:py-2 text-xs sm:text-sm sm:px-3"
                     >About
                     </Link>
 				</li>
                 <li>
                 <Link 
-                    to={"/"}
+                    to={"/contact"}
                     rel="noopener noreferrer"
-                    className="text-customCyan rounded-md px-3 py-2"
+                   className="text-customCyan rounded-md px-1 py-1 sm:py-2 text-xs sm:text-sm sm:px-3"
                     >Contact
                     </Link>
 				</li>

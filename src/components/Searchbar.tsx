@@ -184,7 +184,7 @@ const handleCategorySelect = (category: string) => {
             id="search-dropdown"
             value={searchQuery}
             onChange={handleSearch}
-            className="block p-4 w-full z-20 text-lg text-slate-700 bg-white rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-customCyan focus:border-customCyan"
+            className="block p-4 w-full z-20 text-lg text-slate-700 bg-white rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-secondBlue focus:border-secondBlue"
             placeholder="Choose to search location or business keywords"
             
           />
@@ -194,7 +194,7 @@ const handleCategorySelect = (category: string) => {
             <button
               type="button"
               onClick={clearSearch}
-              className="absolute inset-y-0 right-16 flex items-center pr-3 text-slate-700"
+              className="absolute inset-y-0 right-16 flex items-center pr-3 text-customCyan"
             >
               Clear
             </button>
@@ -204,7 +204,7 @@ const handleCategorySelect = (category: string) => {
           <button
             type="submit"
             onClick={(e) => e.preventDefault()}
-            className="absolute top-0 right-0 p-4 text-lg font-medium h-full text-white bg-customBlue rounded-e-lg border border-customBlue hover:bg-secondCyan hover:border-secondCyan focus:ring-4 focus:outline-none focus:ring-customCyan"
+            className="absolute top-0 right-0 p-4 text-lg font-medium h-full text-white bg-customBlue rounded-e-lg border border-customBlue hover:bg-secondCyan hover:border-secondCyan focus:ring-4 focus:outline-none focus:ring-secondCyan"
             disabled={category === "Choose a category"}
           >
             <svg
@@ -238,7 +238,7 @@ const handleCategorySelect = (category: string) => {
             ) : (
               filteredAds.map((ad) => (
                 <Link to={`/ads/${ad.id}`} key={ad.id}>
-                  <li className="my-4 text-lg font-bold text-zinc-200 hover:text-zinc-100">
+                  <li className="my-4 text-lg font-bold text-white/80 hover:text-white">
                     {ad.businessIdea}
                   </li>
                 </Link>

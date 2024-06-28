@@ -10,6 +10,7 @@ import EditAdPage from "./pages/EditAdpage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignUpPage";
 import ProfilePage from "./pages/ProfilePage";
+import ContactPage from "./pages/ContactPage";
 
 import IsLoggedIn from "./context/IsLoggedIn";
 import IsAnon from "./context/IsAnon";
@@ -23,6 +24,7 @@ function App() {
         <Route index element={<HomePage />} />
         <Route path="/ads" element={<AdsPage />} />
         <Route path="/ads/:id" element={<AdPage />} />
+        <Route path="/contact" element={<ContactPage />} />
 
         <Route
           path="/profile/:userId"
