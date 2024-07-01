@@ -14,6 +14,7 @@ type AdRequestBody = {
     phone: number;
   };
   requiredSkills: string[]; 
+  category: string;
 };
 
 

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState, FormEvent} from "react";
+import { useState, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import adService from "../services/adService";
@@ -20,10 +20,10 @@ interface AdRequestBody {
   posterName: string;
   posterInfo: PosterInfo;
   requiredSkills: string[];
+  category: string;
 }
 
 const AddAdPage = () => {
-
   const [businessIdea, setBusinessIdea] = useState("");
   const [description, setDescription] = useState("");
   const [investment, setInvestment] = useState("");
@@ -34,10 +34,9 @@ const AddAdPage = () => {
   const [posterPhone] = useState<number>(0);
   const [requiredSkills, setRequiredSkills] = useState<string[]>([]);
   const [newSkill, setNewSkill] = useState<string>("");
-
+  const [category, setCategory] = useState("");
 
   const navigate = useNavigate();
-
 
   const handleAddSkill = () => {
     if (newSkill.trim() !== "") {
@@ -65,6 +64,7 @@ const AddAdPage = () => {
         email: posterEmail,
         phone: posterPhone,
       },
+      category,
     };
 
     try {
@@ -85,7 +85,9 @@ const AddAdPage = () => {
       <div className="container m-auto max-w-2xl py-24">
         <div className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0">
           <form onSubmit={handleSubmit}>
-            <h2 className="text-3xl text-center font-semibold mb-6 text-customBlue">Add Your Idea</h2>
+            <h2 className="text-3xl text-center font-semibold mb-6 text-customBlue">
+              Add Your Idea
+            </h2>
 
             <div className="mb-4">
               <label className="block text-customBlue font-semibold mb-2">
@@ -126,6 +128,41 @@ const AddAdPage = () => {
                 htmlFor="type"
                 className="block text-customBlue font-semibold mb-2"
               >
+                Category
+              </label>
+              <select
+                id="category"
+                name="category"
+                className="border rounded w-full py-2 px-3"
+                value={category}
+                onChange={(event) => setCategory(event.target.value)}
+                required
+              >
+                <option value="" disabled>Select Business category</option>
+                <option value="Art">Art</option>
+                <option value="Culture">Culture</option>
+                <option value="Vestuary">Vestuary</option>
+                <option value="Food">Food</option>
+                <option value="Health">Health</option>
+                <option value="Sport">Sport</option>
+                <option value="Design">Design</option>
+                <option value="IT">IT</option>
+                <option value="Finance">Finance</option>
+                <option value="Business">Business</option>
+                <option value="Education">Education</option>
+                <option value="Science">Science</option>
+                <option value="Environment">Environment</option>
+                <option value="Children">Children</option>
+                <option value="Travel">Travel</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div className="mb-4">
+              <label
+                htmlFor="type"
+                className="block text-customBlue font-semibold mb-2"
+              >
                 Initial Investment
               </label>
               <select
@@ -136,18 +173,36 @@ const AddAdPage = () => {
                 onChange={(event) => setInvestment(event.target.value)}
                 required
               >
-                <option value="">Select an investment range</option>
+                <option value="" disabled>Select an investment range</option>
                 <option value="No Idea">No Idea</option>
                 <option value="Under 10.000 DKK">Under 10.000 DKK</option>
-                <option value="10.000 DKK - 20.000 DKK">10.000 DKK - 20.000 DKK</option>
-                <option value="20.000 DKK - 30.000 DKK">20.000 DKK - 30.000 DKK</option>
-                <option value="30.000 DKK - 40.000 DKK">30.000 DKK - 40.000 DKK</option>
-                <option value="40.000 DKK - 50.000 DKK">40.000 DKK - 50.000 DKK</option>
-                <option value="50.000 DKK - 60.000 DKK">50.000 DKK - 60.000 DKK</option>
-                <option value="60.000 DKK - 70.000 DKK">60.000 DKK - 70.000 DKK</option>
-                <option value="70.000 DKK - 80.000 DKK">70.000 DKK - 80.000 DKK</option>
-                <option value="80.000 DKK - 90.000 DKK">80.000 DKK - 90.000 DKK</option>
-                <option value="90.000 DKK - 100.000 DKK">90.000 DKK - 100.000 DKK</option>
+                <option value="10.000 DKK - 20.000 DKK">
+                  10.000 DKK - 20.000 DKK
+                </option>
+                <option value="20.000 DKK - 30.000 DKK">
+                  20.000 DKK - 30.000 DKK
+                </option>
+                <option value="30.000 DKK - 40.000 DKK">
+                  30.000 DKK - 40.000 DKK
+                </option>
+                <option value="40.000 DKK - 50.000 DKK">
+                  40.000 DKK - 50.000 DKK
+                </option>
+                <option value="50.000 DKK - 60.000 DKK">
+                  50.000 DKK - 60.000 DKK
+                </option>
+                <option value="60.000 DKK - 70.000 DKK">
+                  60.000 DKK - 70.000 DKK
+                </option>
+                <option value="70.000 DKK - 80.000 DKK">
+                  70.000 DKK - 80.000 DKK
+                </option>
+                <option value="80.000 DKK - 90.000 DKK">
+                  80.000 DKK - 90.000 DKK
+                </option>
+                <option value="90.000 DKK - 100.000 DKK">
+                  90.000 DKK - 100.000 DKK
+                </option>
                 <option value="Over 100.000 DKK">Over 100.000 DKK</option>
               </select>
             </div>
@@ -170,7 +225,7 @@ const AddAdPage = () => {
 
             <div className="mb-4">
               <label className="block text-customBlue font-semibold mb-2">
-              Required Skills
+                Required Skills
               </label>
               <div className="flex">
                 <input
@@ -188,7 +243,8 @@ const AddAdPage = () => {
                 <Button
                   type="button"
                   onClick={handleAddSkill}
-                  basic color="blue"
+                  basic
+                  color="blue"
                 >
                   Add Skills
                 </Button>

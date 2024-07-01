@@ -1,8 +1,11 @@
-import { useState, useEffect } from "react";
+// FounderListing.tsx
+
+import React, { useState, useEffect } from "react";
 import { FaMapMarker } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { Container, Button, Label } from "semantic-ui-react";
 import { format, isValid, parseISO } from "date-fns";
+import { icons } from "../lib/data";
 
 export interface Ad {
   _id: string;
@@ -17,7 +20,8 @@ export interface Ad {
     name: string;
   };
   date?: string;
-  example?: boolean
+  example?: boolean;
+  category?: string | string[];
 }
 
 interface FounderListingProps {
@@ -28,13 +32,30 @@ const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [showSkills, setShowSkills] = useState(false);
   const [formattedDate, setFormattedDate] = useState("Invalid date");
-
   const navigate = useNavigate();
 
-  let description = ad.description;
-  if (!showFullDescription) {
-    description = description.substring(0, 200) + "...";
-  }
+  useEffect(() => {
+    // Parse and format date if available
+    if (ad.date) {
+      try {
+        const createdAtDate = parseISO(ad.date);
+        if (isValid(createdAtDate)) {
+          const formatted = format(createdAtDate, "MMMM dd, yyyy");
+          setFormattedDate(formatted);
+        }
+      } catch (error) {
+        console.error("Error parsing date:", error);
+      }
+    }
+  }, [ad.date]);
+
+  // Handle category as an array or string
+  const categories = Array.isArray(ad.category) ? ad.category : [ad.category];
+
+  // Find the corresponding icon for the first category in the array
+  const categoryIcon = icons.find((icon) =>
+    categories.includes(icon.name)
+  )?.icon;
 
   const handleClick = () => {
     setShowFullDescription(!showFullDescription);
@@ -48,41 +69,40 @@ const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
     navigate(`/ads/${ad?.id}`);
   };
 
-  // date functions
+  let description = ad.description;
+  if (!showFullDescription) {
+    description = description.substring(0, 200) + "...";
+  }
 
-  useEffect(() => {
-    if (ad.date) {
-      try {
-        const createdAtDate = parseISO(ad.date);
-        // console.log('Raw createdAt:', ad.date);
-        // console.log('Parsed createdAtDate:', createdAtDate);
-
-        if (isValid(createdAtDate)) {
-          const formatted = format(createdAtDate, "MMMM dd, yyyy");
-          // console.log('Formatted Date:', formatted);
-          setFormattedDate(formatted);
-        }
-      } catch (error) {
-        console.error("Error parsing date:", error);
-      }
-    }
-  }, [ad.date]);
-
-  // console.log(ad)
+  //console.log(ad.category);
 
   return (
     <div className="bg-white rounded-xl shadow-md relative p-4">
+    
+        {ad.example && (
+          <Label as="a" color="blue" ribbon size="small" onClick={handleReadMore}>
+            Example
+          </Label>
+        )}
 
-      {ad.example && (
-         <Label as='a' color='blue' ribbon onClick={handleReadMore}>
-         Example
-       </Label>
-      )}
 
 
+      
 
       <div className="container-xl lg:container m-auto">
+      
+
+        <div className="flex flex-row justify-between">
         <div className="text-zinc-400 my-2">{ad.author.name}</div>
+        {categoryIcon && (
+          <div className="bg-customBlue rounded-lg w-12 h-12 text-customCyan flex items-center justify-center text-3xl">
+            {categoryIcon}
+          </div>
+        )}
+
+
+
+        </div>
 
         <h3 className="text-xl font-bold my-2">{ad.businessIdea}</h3>
 

@@ -13,6 +13,7 @@ const EditAdPage = () => {
   const [location, setLocation] = useState("");
   const [requiredSkills, setRequiredSkills] = useState<string[]>([]);
   const [newSkill, setNewSkill] = useState("");
+  const [category, setCategory] = useState("")
 
   const { id } = useParams<{ id: string }>();
   console.log("ID from params:", id);
@@ -30,6 +31,7 @@ const EditAdPage = () => {
         setInvestment(adData.investment);
         setLocation(adData.location);
         setRequiredSkills(adData.requiredSkills);
+        setCategory(adData.category);
       } catch (error) {
         console.error("Error fetching ad:", error);
         toast.error("Failed to fetch ad data");
@@ -64,7 +66,8 @@ const EditAdPage = () => {
           about: "",
           email: "",
           phone: 0
-        }
+        },
+        category,
       });
         toast.success("Ad updated successfully");
         navigate(`/ads/${id}`);
@@ -121,6 +124,41 @@ const EditAdPage = () => {
                 htmlFor="type"
                 className="block text-customBlue font-semibold mb-2"
               >
+                Category
+              </label>
+              <select
+                id="category"
+                name="category"
+                className="border rounded w-full py-2 px-3"
+                value={category}
+                onChange={(event) => setCategory(event.target.value)}
+                required
+              >
+                <option value="" disabled>Select Business category</option>
+                <option value="Art">Art</option>
+                <option value="Culture">Culture</option>
+                <option value="Vestuary">Vestuary</option>
+                <option value="Food">Food</option>
+                <option value="Health">Health</option>
+                <option value="Sport">Sport</option>
+                <option value="Design">Design</option>
+                <option value="IT">IT</option>
+                <option value="Finance">Finance</option>
+                <option value="Business">Business</option>
+                <option value="Education">Education</option>
+                <option value="Science">Science</option>
+                <option value="Environment">Environment</option>
+                <option value="Children">Children</option>
+                <option value="Travel">Travel</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div className="mb-4">
+              <label
+                htmlFor="type"
+                className="block text-customBlue font-semibold mb-2"
+              >
                 Initial Investment
               </label>
               <select
@@ -130,7 +168,7 @@ const EditAdPage = () => {
                 value={investment}
                 onChange={(e) => setInvestment(e.target.value)}
                 >
-                <option value="">Select an investment range</option>
+                <option value="" disabled>Select an investment range</option>
                 <option value="No Idea">No Idea</option>
                 <option value="Under 10.000 DKK">Under 10.000 DKK</option>
                 <option value="10.000 DKK - 20.000 DKK">10.000 DKK - 20.000 DKK</option>
