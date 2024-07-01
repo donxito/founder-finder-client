@@ -142,6 +142,7 @@ const EditAdPage = () => {
                 <option value="Health">Health</option>
                 <option value="Sport">Sport</option>
                 <option value="Design">Design</option>
+                <option value="Media">Media</option>
                 <option value="IT">IT</option>
                 <option value="Finance">Finance</option>
                 <option value="Business">Business</option>
