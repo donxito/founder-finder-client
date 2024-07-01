@@ -32,6 +32,7 @@ const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [showSkills, setShowSkills] = useState(false);
   const [formattedDate, setFormattedDate] = useState("Invalid date");
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -78,30 +79,20 @@ const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
 
   return (
     <div className="bg-white rounded-xl shadow-md relative p-4">
-    
-        {ad.example && (
-          <Label as="a" color="blue" ribbon size="small" onClick={handleReadMore}>
-            Example
-          </Label>
-        )}
-
-
-
-      
+      {ad.example && (
+        <Label as="a" color="blue" ribbon size="small" onClick={handleReadMore}>
+          Example
+        </Label>
+      )}
 
       <div className="container-xl lg:container m-auto">
-      
-
         <div className="flex flex-row justify-between">
-        <div className="text-zinc-400 my-2">{ad.author.name}</div>
-        {categoryIcon && (
-          <div className="bg-customBlue rounded-lg w-12 h-12 text-customCyan flex items-center justify-center text-3xl">
-            {categoryIcon}
-          </div>
-        )}
-
-
-
+          <div className="text-zinc-400 my-2">{ad.author.name}</div>
+          {categoryIcon && (
+            <div className="bg-customBlue rounded-lg w-12 h-12 text-customCyan flex items-center justify-center text-3xl">
+              {categoryIcon}
+            </div>
+          )}
         </div>
 
         <h3 className="text-xl font-bold my-2">{ad.businessIdea}</h3>

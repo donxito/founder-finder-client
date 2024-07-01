@@ -8,6 +8,8 @@ import adService from "../services/adService";
 import { Container, Button } from "semantic-ui-react";
 import ContactForm from "../components/contactForm";
 import { useAuth } from "../context/auth.context";
+import { icons } from "../lib/data";
+import { format, isValid, parseISO } from "date-fns";
 
 interface Ad {
   id: string;
@@ -23,15 +25,22 @@ interface Ad {
     email?: string;
     phoneNumber?: string;
     userId?: string;
+    avatar?: string;
   };
+  date?: string;
+  example?: boolean;
+  category?: string | string[];
 }
 
 const AdPage = () => {
   const [ad, setAd] = useState<Ad | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [formattedDate, setFormattedDate] = useState("Invalid date");
 
   const { id } = useParams<{ id: string }>();
+
   const navigate = useNavigate();
+
   const { user } = useAuth();
 
   useEffect(() => {
@@ -58,7 +67,11 @@ const AdPage = () => {
             email: adData.author.email,
             phoneNumber: adData.author.phoneNumber ?? "",
             userId: adData.author._id,
+            avatar: adData.author.avatar ?? "",
           },
+          date: adData.date,
+          example: adData.example,
+          category: adData.category,
         };
 
         setAd(transformedAd);
@@ -71,6 +84,21 @@ const AdPage = () => {
 
     fetchAd();
   }, [id]);
+
+  // date
+  useEffect(() => {
+    if (ad?.date) {
+      try {
+        const createdAtDate = parseISO(ad.date);
+        if (isValid(createdAtDate)) {
+          const formatted = format(createdAtDate, "MMMM dd, yyyy");
+          setFormattedDate(formatted);
+        }
+      } catch (error) {
+        console.error("Error parsing date:", error);
+      }
+    }
+  }, [ad?.date]);
 
   const onDeleteClick = async (adId: string) => {
     const confirm = window.confirm("Are you sure you want to delete this Ad?");
@@ -93,7 +121,16 @@ const AdPage = () => {
     navigate(`/edit-ad/${id}`);
   };
 
+  //isOwner
   const isAdOwner = user?._id === ad?.posterInfo.userId;
+
+  // Handle category as an array or string
+  const categories = Array.isArray(ad?.category) ? ad.category : [ad?.category];
+
+  // Find the corresponding icon for the first category in the array
+  const categoryIcon = icons.find((icon) =>
+    categories?.includes(icon.name)
+  )?.icon;
 
   return loading ? (
     <Spinner loading={loading} />
@@ -115,14 +152,28 @@ const AdPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-6">
             <main>
               <div className="bg-white p-6 rounded-lg shadow-md text-center md:text-left">
-                <h1 className="text-xl font-bold mb-2 text-customBlue">
-                  {ad?.businessIdea}
-                </h1>
+                <div className="flex flex-row justify-between">
+                  <h1 className="text-xl font-bold mb-2 text-customBlue">
+                    {ad?.businessIdea}
+                  </h1>
+
+                  {categoryIcon && (
+                    <div className="bg-customBlue rounded-lg w-16 h-16 text-customCyan flex items-center justify-center text-5xl">
+                      {categoryIcon}
+                    </div>
+                  )}
+                </div>
 
                 <div className="text-gray-500 mb-4 flex align-middle justify-center md:justify-start">
                   <FaMapMarker className="text-lg text-customCyan mr-2"></FaMapMarker>
                   <p className="text-customCyan">{ad?.location}</p>
                 </div>
+
+                {formattedDate && (
+                  <time className="text-gray-500 text-sm italic pb-2">
+                    {formattedDate}
+                  </time>
+                )}
               </div>
 
               <div className="bg-white p-6 rounded-lg shadow-md mt-6">
@@ -131,7 +182,9 @@ const AdPage = () => {
                 </h3>
                 <Container textAlign="justified">
                   <div className="p-4 bg-gray-100 rounded-md mb-4 overflow-hidden">
-                    <p className="text-gray-800 mb-0 break-words">{ad?.description}</p>
+                    <p className="text-gray-800 mb-0 break-words">
+                      {ad?.description}
+                    </p>
                   </div>
                 </Container>
                 <hr className="my-4" />
@@ -155,11 +208,23 @@ const AdPage = () => {
 
             <aside>
               <div className="bg-white p-6 rounded-lg shadow-md">
-                <h2 className="text-2xl text-customBlue">
-                  Hello! I'm {ad?.posterInfo?.name}
-                </h2>
-
-                <p className="my-2 text-zinc-500">{ad?.posterInfo?.about}</p>
+                <div className="flex flex-col items-center gap-4">
+                  <h2 className="text-2xl md:text-3xl text-customBlue text-center">
+                    Hello! I'm {ad?.posterInfo?.name}
+                  </h2>
+                  <img
+                    src={ad?.posterInfo?.avatar}
+                    alt="Avatar"
+                    className="w-48 rounded-lg mb-4"
+                  />
+                  <Container textAlign="justified" className="w-full max-w-2xl">
+                    <div className="p-4 bg-gray-100 rounded-md overflow-hidden">
+                      <p className="text-gray-800 break-words">
+                        {ad?.posterInfo?.about}
+                      </p>
+                    </div>
+                  </Container>
+                </div>
 
                 <hr className="my-4" />
 
@@ -178,7 +243,11 @@ const AdPage = () => {
                   <Button onClick={handleClick} color="facebook">
                     Edit
                   </Button>
-                  <Button onClick={() => onDeleteClick(`${id}`)} basic color="blue">
+                  <Button
+                    onClick={() => onDeleteClick(`${id}`)}
+                    basic
+                    color="blue"
+                  >
                     Delete
                   </Button>
                 </div>

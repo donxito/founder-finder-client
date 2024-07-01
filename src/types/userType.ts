@@ -8,6 +8,7 @@ export interface UserType {
     authToken?: string | undefined;
     iat: number;
   exp: number;
+  avatar?: string;
   
   
   }
