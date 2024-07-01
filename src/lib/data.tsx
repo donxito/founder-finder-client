@@ -8,6 +8,7 @@ import { FaPencil, FaComputer, FaRegMoneyBill1 } from "react-icons/fa6";
 import { BsBank2 } from "react-icons/bs";
 import { DiAsterisk } from "react-icons/di";
 import { IoSchoolSharp } from "react-icons/io5";
+import { TiSocialInstagram } from "react-icons/ti";
 
 export const icons = [
     { name: "Art", icon: <FaPaintBrush /> },
@@ -17,6 +18,7 @@ export const icons = [
     { name: "Health", icon: <MdOutlineHealthAndSafety /> },
     { name: "Sport", icon: <MdSportsHandball /> },
     { name: "Design", icon: <FaPencil /> },
+    { name: "Media", icon: <TiSocialInstagram /> },
     { name: "IT", icon: <FaComputer /> },
     { name: "Finance", icon: <BsBank2 /> },
     { name: "Commerce", icon: <FaRegMoneyBill1 /> },
