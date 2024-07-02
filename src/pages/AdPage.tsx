@@ -151,19 +151,19 @@ const AdPage = () => {
         <div className="container m-auto py-10 px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-6">
             <main>
+
               <div className="bg-white p-6 rounded-lg shadow-md text-center md:text-left">
-                <div className="flex flex-row justify-between">
+                <div className="flex flex-col items-center sm:flex-row sm:justify-between">
                   <h1 className="text-xl font-bold mb-2 text-customBlue">
                     {ad?.businessIdea}
                   </h1>
 
                   {categoryIcon && (
-                    <div className="bg-customBlue rounded-lg w-16 h-16 text-customCyan flex items-center justify-center text-5xl">
+                    <div className="bg-customBlue rounded-lg w-16 h-16 text-customCyan flex items-center justify-center text-5xl my-4 sm:my-0">
                       {categoryIcon}
                     </div>
                   )}
                 </div>
-
                 <div className="text-gray-500 mb-4 flex align-middle justify-center md:justify-start">
                   <FaMapMarker className="text-lg text-customCyan mr-2"></FaMapMarker>
                   <p className="text-customCyan">{ad?.location}</p>

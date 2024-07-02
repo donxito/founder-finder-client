@@ -51,7 +51,7 @@ const FounderListings: React.FC<Props> = ({ isHome = false }) => {
 
   return (
     <section className="bg-zinc-100 px-4 py-16 mb-2">
-      <div className="container-xl lg:container m-auto">
+      <div className=" container-sm sm:container-xl lg:container m-auto">
         <h2 className="text-3xl font-bold text-customBlue mb-14 text-center">
           {isHome ? "Latest Posts" : "Find a co-founder"}
         </h2>

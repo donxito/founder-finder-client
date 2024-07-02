@@ -112,7 +112,7 @@ const handleCategorySelect = (category: string) => {
 
 
   return (
-    <form className="max-w-3xl mx-auto py-10 my-10">
+    <form className=" max-w-sm sm:max-w-3xl mx-auto py-10 my-10 ">
       <div className="flex">
         {/* Category Dropdown */}
         <label htmlFor="search-dropdown" className="mb-2 text-sm font-medium text-slate-700 sr-only">
@@ -149,7 +149,7 @@ const handleCategorySelect = (category: string) => {
               <li>
                 <button
                   type="button"
-                  className="inline-flex w-full px-4 py-2 hover:bg-gray-600 hover:text-white"
+                  className="inline-flex sm:w-full px-4 py-2 hover:bg-gray-600 hover:text-white"
                   onClick={() => handleCategorySelect("Choose a category")}
                 >
                   Categories
@@ -184,8 +184,8 @@ const handleCategorySelect = (category: string) => {
             id="search-dropdown"
             value={searchQuery}
             onChange={handleSearch}
-            className="block p-4 w-full z-20 text-lg text-slate-700 bg-white rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-secondBlue focus:border-secondBlue"
-            placeholder="Choose to search location or business keywords"
+            className="block p-4 w-full z-20 sm:text-lg text-slate-700 bg-white rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-secondBlue focus:border-secondBlue"
+            placeholder="Location or Business keywords"
             
           />
 
