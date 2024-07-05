@@ -12,18 +12,53 @@ body {
 }
 
 .underline-effect::after {
-    content: '';
-    display: block;
-    width: 0;
-    height: 2px;
-    background: currentColor;
-    transition: width 0.3s;
-  }
-  
-  .underline-effect:hover::after {
-    width: 100%;
-  }
-  
-  .active-underline::after {
-    width: 100%;
-  }
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  transition: width 0.3s;
+}
+
+.underline-effect:hover::after {
+  width: 100%;
+}
+
+.active-underline::after {
+  width: 100%;
+}
+
+
+/* Custom fonts */
+
+@font-face {
+  font-family: 'Wotfard';
+  src: url('https://sandpack-bundler.vercel.app/fonts/wotfard/wotfard-semibold-webfont.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: 'Wotfard';
+  src: url('https://sandpack-bundler.vercel.app/fonts/wotfard/wotfard-medium-webfont.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: 'Wotfard';
+  src: url('https://sandpack-bundler.vercel.app/fonts/wotfard/wotfard-regular-webfont.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: fallback;
+}
+
+html {
+  font-family: 'Wotfard', sans-serif;
+}
+
+h1, h2, h3, h4, h5, p {
+  font-family: 'Wotfard', sans-serif !important;
+}

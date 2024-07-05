@@ -87,7 +87,7 @@ const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
 
       <div className="container-xl lg:container m-auto">
         <div className="flex flex-row justify-between">
-          <div className="text-zinc-400 my-2">{ad.author.name}</div>
+          <h4 className="text-zinc-400 my-2">{ad.author.name}</h4>
           {categoryIcon && (
             <div className="bg-customBlue rounded-lg w-12 h-12 text-customCyan flex items-center justify-center text-3xl">
               {categoryIcon}
@@ -133,10 +133,10 @@ const FounderListing: React.FC<FounderListingProps> = ({ ad }) => {
           </ul>
         )}
         <div className="flex flex-col lg:flex-row justify-between mb-4">
-          <div className="text-slate-700 my-3">
+          <p className="text-slate-700 my-3">
             <FaMapMarker className="inline text-lg mb-1 mr-1" />
             {ad.location}
-          </div>
+          </p>
 
           <Button color="blue" onClick={handleReadMore}>
             Read More

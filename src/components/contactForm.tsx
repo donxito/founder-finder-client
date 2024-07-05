@@ -66,7 +66,7 @@ function ContactForm() {
           Submitting...
         </Button>
       ) : (
-        <Button basic color="blue" type="submit" value="Send">
+        <Button basic color="blue" type="submit" value="Send" style={{ fontFamily: 'Wotfard, sans-serif' }}  >
           Submit
         </Button>
       )}

@@ -150,6 +150,7 @@ const handleCategorySelect = (category: string) => {
                 <button
                   type="button"
                   className="inline-flex sm:w-full px-4 py-2 hover:bg-gray-600 hover:text-white"
+                  style={{ fontFamily: 'Wotfard, sans-serif' }}
                   onClick={() => handleCategorySelect("Choose a category")}
                 >
                   Categories
