@@ -4,7 +4,10 @@ import { Link } from "react-router-dom"
 
 const Footer = () => {
   return (
-    <footer className="px-4 py-3 bg-customBlue text-customCyan mt-96">
+    <div className="flex flex-col min-h-screen"> {/* Added a flex container with min-height */}
+      <div className="flex-grow"> {/* This allows the content to grow and push the footer down */}
+        </div>
+    <footer className="px-4 py-3 bg-customBlue text-customCyan ">
 	<div className="container flex flex-wrap items-center justify-center mx-auto space-y-4 sm:justify-between sm:space-y-0">
 		
         <div className="flex flex-row pr-3 space-x-4 sm:space-x-8">
@@ -49,6 +52,7 @@ const Footer = () => {
 		
 	</div>
 </footer>
+</div>
   )
 }
 
